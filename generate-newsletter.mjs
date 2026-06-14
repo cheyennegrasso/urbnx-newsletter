@@ -204,29 +204,32 @@ async function createZohoCampaign(token, subject, htmlUrl) {
   now.setMinutes(now.getMinutes() + 10);
   const scheduleTime = now.toISOString().replace("T", " ").substring(0, 16);
 
-  const body = JSON.stringify({
+  const params = new URLSearchParams({
     campaign_name: `Newsletter URBNX – ${new Date().toLocaleDateString("it-IT")}`,
     campaign_type: "Regular",
-    email_details: {
+    email_details: JSON.stringify({
       sender_address: z.fromEmail,
       sender_name: z.fromName,
       reply_to: z.replyTo,
       subject,
-    },
-    recipients: { list_details: [{ list_unique_key: z.listKey, status: "active" }] },
-    topic_id: z.topicId,
+    }),
+    recipients: JSON.stringify({ list_details: [{ list_unique_key: z.listKey, status: "active" }] }),
     content_type: "url",
     html_url: htmlUrl,
-    ...(CFG.draftMode ? {} : { schedule_time: scheduleTime, schedule_type: "Immediate" }),
   });
+  if (z.topicId) params.set("topic_id", z.topicId);
+  if (!CFG.draftMode) {
+    params.set("schedule_time", scheduleTime);
+    params.set("schedule_type", "Immediate");
+  }
 
   const r = await fetchJson("https://campaigns.zoho.eu/api/v1.1/createcampaign?resfmt=JSON", {
     method: "POST",
     headers: {
       Authorization: `Zoho-oauthtoken ${token}`,
-      "Content-Type": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-    body,
+    body: params.toString(),
   });
 
   if (r.status !== "success") throw new Error(`Zoho campaign error: ${JSON.stringify(r)}`);
