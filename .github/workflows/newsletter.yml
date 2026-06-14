@@ -30,8 +30,6 @@ jobs:
           ZOHO_TOPIC_ID: ${{ secrets.ZOHO_TOPIC_ID }}
           ZOHO_FROM_EMAIL: ${{ secrets.ZOHO_FROM_EMAIL }}
           ZOHO_FROM_NAME: "URBNX"
-          DRAFT_MODE: "true" # cambia a "false" quando sei pronta a inviare in automatico
-          NEWSLETTER_HTML_URL: "https://raw.githubusercontent.com/${{ github.repository }}/main/newsletter.html"
         run: node generate-newsletter.mjs
 
       - name: Pubblica HTML nel repo

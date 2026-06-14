@@ -198,30 +198,23 @@ async function getZohoToken() {
   return r.access_token;
 }
 
-async function createZohoCampaign(token, subject, htmlUrl) {
+async function createZohoCampaign(token, subject, html) {
   const z = CFG.zoho;
-  const now = new Date();
-  now.setMinutes(now.getMinutes() + 10);
-  const scheduleTime = now.toISOString().replace("T", " ").substring(0, 16);
+  const listDetails = JSON.stringify({ [z.listKey]: [] });
 
   const params = new URLSearchParams({
-    campaign_name: `Newsletter URBNX – ${new Date().toLocaleDateString("it-IT")}`,
-    campaign_type: "regular",
+    campaignname: `Newsletter URBNX – ${new Date().toLocaleDateString("it-IT")}`,
     from_email: z.fromEmail,
     from_name: z.fromName,
     reply_to: z.replyTo,
     subject,
-    list_unique_key: z.listKey,
-    content_type: "html_url",
-    html_url: htmlUrl,
+    list_details: listDetails,
+    html_body: html,
+    resfmt: "JSON",
   });
-  if (z.topicId) params.set("topic_id", z.topicId);
-  if (!CFG.draftMode) {
-    params.set("schedule_time", scheduleTime);
-    params.set("schedule_type", "Immediate");
-  }
+  if (z.topicId) params.set("topicId", z.topicId);
 
-  const r = await fetchJson("https://campaigns.zoho.eu/api/v1.1/createcampaign?resfmt=JSON", {
+  const r = await fetchJson("https://campaigns.zoho.eu/api/v2/createCampaign", {
     method: "POST",
     headers: {
       Authorization: `Zoho-oauthtoken ${token}`,
@@ -230,7 +223,7 @@ async function createZohoCampaign(token, subject, htmlUrl) {
     body: params.toString(),
   });
 
-  if (r.status !== "success") throw new Error(`Zoho campaign error: ${JSON.stringify(r)}`);
+  if (r.code !== "200") throw new Error(`Zoho campaign error: ${JSON.stringify(r)}`);
   return r;
 }
 
@@ -249,14 +242,12 @@ async function main() {
   writeFileSync("newsletter.html", html);
   console.log("  → newsletter.html salvato");
 
-  if (CFG.htmlUrl && CFG.zoho.refreshToken) {
+  if (CFG.zoho.refreshToken) {
     console.log("▶ Creo campagna Zoho...");
     const token = await getZohoToken();
-    const result = await createZohoCampaign(token, content.subject, CFG.htmlUrl);
-    console.log(`  → Campagna creata: ${result.campaign_key}`);
-    if (CFG.draftMode) {
-      console.log("  ℹ️  Modalità bozza — verifica su Zoho e invia manualmente.");
-    }
+    const result = await createZohoCampaign(token, content.subject, html);
+    console.log(`  → Campagna creata: ${result.campaignKey}`);
+    console.log("  ℹ️  Bozza salvata su Zoho — verifica e invia manualmente.");
   } else {
     console.log("ℹ️  Credenziali Zoho non presenti — solo HTML generato.");
   }
