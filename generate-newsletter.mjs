@@ -66,8 +66,10 @@ function pickLocations() {
 }
 
 // ─── 2. CONTENT GENERATION (Claude) ────────────────────────────────────────
-const SYSTEM = `Sei il copywriter della newsletter settimanale di URBNX, la piattaforma italiana per lo smart working in location alternative.
-Scrivi in italiano, tono professionale ma caldo, frasi brevi.
+const SYSTEM = `Sei Cheyenne, founder di URBNX — la piattaforma italiana che aiuta i professionisti a lavorare da location alternative (hotel, castelli, agriturismi, spazi di coworking unici).
+Scrivi la newsletter settimanale in prima persona plurale ("noi di URBNX", "vi portiamo", "abbiamo scelto").
+Tono: caldo, diretto, appassionato. Come se scrivessi a dei colleghi o amici che condividono la stessa visione del lavoro. Mai linguaggio da brochure o da ufficio marketing.
+Usa frasi vere, non slogan. Le persone devono sentire che c'è un team vero dietro, non un bot.
 Non inventare dati o URL. Rispondi SOLO con JSON valido, nessun testo extra.`;
 
 async function generateContent(locations) {
@@ -77,7 +79,7 @@ async function generateContent(locations) {
 
   const msg = await client.messages.create({
     model: CFG.anthropicModel,
-    max_tokens: 1024,
+    max_tokens: 1800,
     system: SYSTEM,
     messages: [
       {
@@ -88,15 +90,23 @@ ${locationSummary}
 
 Rispondi con questo JSON (tutti i campi obbligatori):
 {
-  "subject": "oggetto email (max 50 caratteri)",
-  "preheader": "preheader (max 85 caratteri)",
-  "headline": "titolo principale newsletter (max 60 caratteri)",
-  "intro": "paragrafo introduttivo sullo smart working (2-3 frasi, max 120 parole)",
-  "tip": { "title": "titolo consiglio settimana (max 40 car)", "body": "consiglio pratico smart working (max 60 parole)" },
+  "subject": "oggetto email breve e curioso, max 50 caratteri, non generico",
+  "intro": "paragrafo di apertura personale: parla di come stai vivendo lo smart working questa settimana, cosa hai notato, un pensiero autentico. 4-5 frasi, circa 80-100 parole. Prima persona plurale.",
+  "tip": {
+    "title": "un consiglio pratico per questa settimana, formulato come suggerimento tra amici, max 50 car",
+    "body": "spiega il consiglio con dettagli concreti: perché funziona, come si applica, cosa cambia davvero. 4-5 frasi, circa 80 parole."
+  },
   "locations": [
-    { "tagline": "frase breve accattivante per location 0 (max 50 car)", "cta": "testo bottone (max 20 car)" },
-    { "tagline": "frase breve accattivante per location 1 (max 50 car)", "cta": "testo bottone (max 20 car)" }
-  ]
+    {
+      "description": "racconta questa location come se la stessi consigliando a un amico: che atmosfera ha, cosa la rende speciale per lavorare, che tipo di giornata ci puoi passare. 3-4 frasi, circa 60-70 parole.",
+      "cta": "testo link, max 20 car"
+    },
+    {
+      "description": "stessa cosa per la seconda location, stessa lunghezza e stesso tono.",
+      "cta": "testo link, max 20 car"
+    }
+  ],
+  "sign_off": "saluto finale caldo e personale, 1-2 frasi, firma come 'il team URBNX' o simile"
 }`,
       },
     ],
@@ -111,68 +121,85 @@ Rispondi con questo JSON (tutti i campi obbligatori):
 
 // ─── 3. HTML EMAIL ─────────────────────────────────────────────────────────
 function buildHtml(content, locations) {
+  const p = (text) =>
+    `<p style="margin:0 0 18px;font-size:16px;line-height:1.75;color:#2d2d2d;">${text}</p>`;
+
   const locationBlocks = locations
     .map(
       (loc, i) => `
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;border:1px solid #e0e0e0;">
+    <tr><td style="padding:0 0 40px;">
       ${
         loc.image
-          ? `<tr><td><a href="${loc.link}" style="display:block;"><img src="${loc.image}" alt="${loc.name}" width="600" style="width:100%;max-width:600px;height:220px;object-fit:cover;display:block;filter:grayscale(100%);"></a></td></tr>`
+          ? `<a href="${loc.link}" style="display:block;margin-bottom:16px;"><img src="${loc.image}" alt="${loc.name}" width="560" style="width:100%;max-width:560px;height:260px;object-fit:cover;display:block;border-radius:4px;"></a>`
           : ""
       }
-      <tr><td style="padding:24px;">
-        <p style="margin:0 0 4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#888;">SPAZIO DELLA SETTIMANA</p>
-        <h2 style="margin:0 0 8px;font-size:20px;font-weight:700;color:#111;">${loc.name}</h2>
-        <p style="margin:0 0 16px;font-size:14px;color:#555;font-style:italic;">${content.locations[i].tagline}</p>
-        <a href="${loc.link}" style="display:inline-block;padding:12px 24px;background:#111;color:#fff;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1px;">${content.locations[i].cta}</a>
-      </td></tr>
-    </table>`
+      <h2 style="margin:0 0 4px;font-size:20px;font-weight:600;color:#111;letter-spacing:-0.3px;">${loc.name}</h2>
+      ${loc.city ? `<p style="margin:0 0 12px;font-size:13px;color:#999;">${loc.city}</p>` : ""}
+      ${p(content.locations[i].description)}
+      <a href="${loc.link}" style="font-size:15px;color:#1a1a1a;font-weight:600;text-decoration:underline;">${content.locations[i].cta} →</a>
+    </td></tr>`
     )
-    .join("");
+    .join(`<tr><td style="padding:0 0 40px;"><hr style="border:none;border-top:1px solid #ebebeb;"></td></tr>`);
 
   return `<!DOCTYPE html>
 <html lang="it">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${content.subject}</title></head>
-<body style="margin:0;padding:0;background:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#f5f5f5">
-<tr><td align="center" style="padding:32px 16px;">
-<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${content.subject}</title>
+</head>
+<body style="margin:0;padding:0;background:#f9f9f7;font-family:Georgia,'Times New Roman',serif;">
+<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#f9f9f7">
+<tr><td align="center" style="padding:40px 16px;">
+<table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:6px;">
 
   <!-- HEADER -->
-  <tr><td style="padding:32px;border-bottom:2px solid #111;text-align:center;">
-    <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#111;">URBNX</p>
-    <p style="margin:4px 0 0;font-size:11px;letter-spacing:2px;color:#888;text-transform:uppercase;">Smart Working Newsletter</p>
+  <tr><td style="padding:32px 40px 24px;">
+    <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">urbnx — smart working</p>
   </td></tr>
 
-  <!-- HERO -->
-  <tr><td style="padding:40px 32px 32px;">
-    <h1 style="margin:0 0 16px;font-size:28px;font-weight:700;line-height:1.2;color:#111;">${content.headline}</h1>
-    <p style="margin:0;font-size:15px;line-height:1.7;color:#444;">${content.intro}</p>
+  <!-- INTRO -->
+  <tr><td style="padding:0 40px 32px;">
+    ${p(content.intro)}
+
+    <!-- DIVIDER -->
+    <hr style="border:none;border-top:1px solid #ebebeb;margin:32px 0;">
+
+    <!-- TIP -->
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr><td style="padding:20px 24px;background:#f5f4f0;border-left:3px solid #2d2d2d;border-radius:2px;">
+        <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">Il consiglio di questa settimana</p>
+        <p style="margin:0 0 10px;font-size:17px;font-weight:600;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">${content.tip.title}</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:#444;font-family:Georgia,'Times New Roman',serif;">${content.tip.body}</p>
+      </td></tr>
+    </table>
+
+    <hr style="border:none;border-top:1px solid #ebebeb;margin:32px 0;">
+
+    <!-- LOCATIONS INTRO -->
+    <p style="margin:0 0 28px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">Gli spazi di questa settimana</p>
+
   </td></tr>
-
-  <!-- DIVIDER -->
-  <tr><td style="padding:0 32px;"><hr style="border:none;border-top:1px solid #e0e0e0;"></td></tr>
-
-  <!-- TIP -->
-  <tr><td style="padding:32px;">
-    <p style="margin:0 0 8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#888;">CONSIGLIO DELLA SETTIMANA</p>
-    <h3 style="margin:0 0 8px;font-size:16px;font-weight:700;color:#111;">${content.tip.title}</h3>
-    <p style="margin:0;font-size:14px;line-height:1.7;color:#555;">${content.tip.body}</p>
-  </td></tr>
-
-  <!-- DIVIDER -->
-  <tr><td style="padding:0 32px;"><hr style="border:none;border-top:1px solid #e0e0e0;"></td></tr>
 
   <!-- LOCATIONS -->
-  <tr><td style="padding:32px;">
-    <p style="margin:0 0 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#888;">SPAZI IN EVIDENZA</p>
-    ${locationBlocks}
+  <tr><td style="padding:0 40px;">
+    <table width="100%" cellpadding="0" cellspacing="0">
+      ${locationBlocks}
+    </table>
+  </td></tr>
+
+  <!-- SIGN OFF -->
+  <tr><td style="padding:8px 40px 40px;">
+    <hr style="border:none;border-top:1px solid #ebebeb;margin:0 0 28px;">
+    ${p(content.sign_off)}
   </td></tr>
 
   <!-- FOOTER -->
-  <tr><td style="padding:24px 32px;background:#111;text-align:center;">
-    <p style="margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:4px;color:#fff;text-transform:uppercase;">URBNX</p>
-    <p style="margin:0;font-size:11px;color:#888;">© ${new Date().getFullYear()} URBNX · <a href="{{unsubscribe}}" style="color:#888;">Annulla iscrizione</a></p>
+  <tr><td style="padding:20px 40px;border-top:1px solid #ebebeb;text-align:center;">
+    <p style="margin:0;font-size:12px;color:#bbb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+      © ${new Date().getFullYear()} URBNX ·
+      <a href="{{unsubscribe}}" style="color:#bbb;text-decoration:underline;">Annulla iscrizione</a>
+    </p>
   </td></tr>
 
 </table>
