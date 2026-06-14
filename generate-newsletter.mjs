@@ -220,7 +220,7 @@ async function createZohoCampaign(token, subject, htmlUrl) {
     ...(CFG.draftMode ? {} : { schedule_time: scheduleTime, schedule_type: "Immediate" }),
   });
 
-  const r = await fetchJson("https://campaigns.zoho.eu/api/v1.1/createcampaign", {
+  const r = await fetchJson("https://campaigns.zoho.eu/api/v1.1/createcampaign?resfmt=JSON", {
     method: "POST",
     headers: {
       Authorization: `Zoho-oauthtoken ${token}`,
