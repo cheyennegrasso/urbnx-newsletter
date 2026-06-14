@@ -102,7 +102,11 @@ Rispondi con questo JSON (tutti i campi obbligatori):
     ],
   });
 
-  return JSON.parse(msg.content[0].text);
+  let text = msg.content[0].text.trim();
+  if (text.startsWith("```")) {
+    text = text.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
+  }
+  return JSON.parse(text);
 }
 
 // ─── 3. HTML EMAIL ─────────────────────────────────────────────────────────
