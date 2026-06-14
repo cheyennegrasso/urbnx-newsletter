@@ -206,15 +206,13 @@ async function createZohoCampaign(token, subject, htmlUrl) {
 
   const params = new URLSearchParams({
     campaign_name: `Newsletter URBNX – ${new Date().toLocaleDateString("it-IT")}`,
-    campaign_type: "Regular",
-    email_details: JSON.stringify({
-      sender_address: z.fromEmail,
-      sender_name: z.fromName,
-      reply_to: z.replyTo,
-      subject,
-    }),
-    recipients: JSON.stringify({ list_details: [{ list_unique_key: z.listKey, status: "active" }] }),
-    content_type: "url",
+    campaign_type: "regular",
+    from_email: z.fromEmail,
+    from_name: z.fromName,
+    reply_to: z.replyTo,
+    subject,
+    list_unique_key: z.listKey,
+    content_type: "html_url",
     html_url: htmlUrl,
   });
   if (z.topicId) params.set("topic_id", z.topicId);
