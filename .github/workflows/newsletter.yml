@@ -1,0 +1,43 @@
+name: Newsletter URBNX Settimanale
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # ogni lunedì alle 7:00 UTC (9:00 Italia)
+  workflow_dispatch: # run manuale dal pannello GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install @anthropic-ai/sdk
+
+      - name: Genera newsletter e crea campagna Zoho
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ZOHO_CLIENT_ID: ${{ secrets.ZOHO_CLIENT_ID }}
+          ZOHO_CLIENT_SECRET: ${{ secrets.ZOHO_CLIENT_SECRET }}
+          ZOHO_REFRESH_TOKEN: ${{ secrets.ZOHO_REFRESH_TOKEN }}
+          ZOHO_LIST_KEY: ${{ secrets.ZOHO_LIST_KEY }}
+          ZOHO_TOPIC_ID: ${{ secrets.ZOHO_TOPIC_ID }}
+          ZOHO_FROM_EMAIL: ${{ secrets.ZOHO_FROM_EMAIL }}
+          ZOHO_FROM_NAME: "URBNX"
+          DRAFT_MODE: "true" # cambia a "false" quando sei pronta a inviare in automatico
+          NEWSLETTER_HTML_URL: "https://raw.githubusercontent.com/${{ github.repository }}/main/newsletter.html"
+        run: node generate-newsletter.mjs
+
+      - name: Pubblica HTML nel repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add newsletter.html
+          git diff --cached --quiet || git commit -m "newsletter $(date +'%Y-%m-%d')"
+          git push

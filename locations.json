@@ -1,0 +1,863 @@
+[
+  {
+    "name": "Bloom",
+    "link": "https://app.urbnx.com/locations/bloom/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/bloom-9383.edit-min-1024x683.jpg",
+    "address": "Via San Liberale, 10, 31100 Treviso TV, Italia",
+    "city": "Treviso TV"
+  },
+  {
+    "name": "Agriturismo La Dolza",
+    "link": "https://app.urbnx.com/locations/agriturismo-la-dolza/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/agriturismoladolza1-1024x682.jpg",
+    "address": "Via la Dolza, 7, 31051 Valmareno TV, Italia",
+    "city": "Valmareno TV"
+  },
+  {
+    "name": "HUB522",
+    "link": "https://app.urbnx.com/locations/hub522/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/hub1-1024x683.jpg",
+    "address": "Via Trento, 3F, 31030 Castello di Godego TV, Italia",
+    "city": "Castello di Godego TV"
+  },
+  {
+    "name": "Hotel Terme Olympia",
+    "link": "https://app.urbnx.com/locations/hotel-terme-olympia/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/olympia5.jpg",
+    "address": "Viale Stazione, 25, 35036 Montegrotto Terme PD, Italia",
+    "city": "Montegrotto Terme PD"
+  },
+  {
+    "name": "Hotel San Carlo",
+    "link": "https://app.urbnx.com/locations/hotel-san-carlo/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/hotelsancarlo1-1024x683.jpg",
+    "address": "Via le ponti, 23038 Semogo SO, Italia",
+    "city": "Semogo SO"
+  },
+  {
+    "name": "Abano Ritz Hotel Terme",
+    "link": "https://app.urbnx.com/locations/abano-ritz-hotel-terme/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/abano1-1024x683.jpg",
+    "address": "Via Monteortone, 19, 35031 Abano Terme PD, Italia",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "Villa Troubetskoy",
+    "link": "https://app.urbnx.com/locations/villa-troubetskoy/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/Troubetskoy1.jpg",
+    "address": "Via Torni, 41, 31021 Mogliano Veneto TV, Italia",
+    "city": "Mogliano Veneto TV"
+  },
+  {
+    "name": "Castello Bevilacqua",
+    "link": "https://app.urbnx.com/locations/castello-bevilacqua/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/bevilacqua5-1-1024x718.jpg",
+    "address": "Via Roma, 50, 37040 Bevilacqua VR, Italia",
+    "city": "Bevilacqua VR"
+  },
+  {
+    "name": "Villa San Liberale",
+    "link": "https://app.urbnx.com/locations/villa-san-liberale/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/villasanliberale1-1024x682.jpg",
+    "address": "Via S. Liberale, 9, 32032 Feltre BL, Italia",
+    "city": "Feltre BL"
+  },
+  {
+    "name": "Agriturismo Le Vigne Morosina",
+    "link": "https://app.urbnx.com/locations/agriturismo-le-vigne-morosina/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/claudia1-1-1024x683.jpg",
+    "address": "Via Callunga, 74, 31040 Cessalto TV, Italia",
+    "city": "Cessalto TV"
+  },
+  {
+    "name": "Villa del Bono",
+    "link": "https://app.urbnx.com/locations/villa-del-bono/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/villadelbono1.jpg",
+    "address": "Via Luigi Cadorna, 38, 23894 Cremella LC, Italia",
+    "city": "Cremella LC"
+  },
+  {
+    "name": "Agriturismo da Zeffi",
+    "link": "https://app.urbnx.com/locations/agriturismo-da-zeffi/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/agriturismodazeffi-1-1024x683.jpg",
+    "address": "Via Fonfa, 32, 31027 Spresiano TV, Italia",
+    "city": "Spresiano TV"
+  },
+  {
+    "name": "BW Signature Collection Antares Hotel Concorde",
+    "link": "https://app.urbnx.com/locations/bw-signature-collection-antares-hotel-concorde/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/antares1.jpg",
+    "address": "Viale Monza, 132, 20127 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "BEST WESTERN HOTEL MADISON",
+    "link": "https://app.urbnx.com/locations/best-western-hotel-madison/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/D64A7285-1024x675.jpg",
+    "address": "Via Privata Leopoldo Gasparotto, 8, 20124 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Ground Control coworking",
+    "link": "https://app.urbnx.com/locations/ground-control-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/ground3-1024x683.jpg",
+    "address": "Via Montello, 7a, 31100 Treviso TV, Italia",
+    "city": "Treviso TV"
+  },
+  {
+    "name": "Golf Hotel Milano",
+    "link": "https://app.urbnx.com/locations/golf-hotel-milano/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/bar.jpg",
+    "address": "Via Abruzzo, Opera MI, Italia",
+    "city": ""
+  },
+  {
+    "name": "B&amp;B Hotel Treviso",
+    "link": "https://app.urbnx.com/locations/bb-hotel-treviso/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/hotelbb1-1024x682.jpg",
+    "address": "Via Gabriele D'Annunzio, 35, 31100 Treviso TV, Italia",
+    "city": "Treviso TV"
+  },
+  {
+    "name": "Hotel dei Tigli",
+    "link": "https://app.urbnx.com/locations/hotel-dei-tigli/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/259954677.jpg",
+    "address": "Via Paletta, 20, 21021 Angera VA, Italia",
+    "city": "Angera VA"
+  },
+  {
+    "name": "Make Hub",
+    "link": "https://app.urbnx.com/locations/make-hub/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/5-1024x684.jpg",
+    "address": "Piazza Sottotenente Licata, 23, 92027 Licata AG, Italia",
+    "city": "Licata AG"
+  },
+  {
+    "name": "Villa Pesavento",
+    "link": "https://app.urbnx.com/locations/villa-pesavento/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/esterni.jpg",
+    "address": "Via Monte Gallo, 9, 35143 Padova PD, Italia",
+    "city": "Padova PD"
+  },
+  {
+    "name": "Palazzo della Luce",
+    "link": "https://app.urbnx.com/locations/palazzo-della-luce/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/palazzoluce1.jpg",
+    "address": "Via San Nicolò, 42, 31100 Treviso TV, Italia",
+    "city": "Treviso TV"
+  },
+  {
+    "name": "B-Work",
+    "link": "https://app.urbnx.com/locations/b-work/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/b-work1-1024x768.jpg",
+    "address": "Via Postumia Castellana, 42, 31055 Postumia TV, Italia",
+    "city": "Postumia TV"
+  },
+  {
+    "name": "Infinite Area",
+    "link": "https://app.urbnx.com/locations/infinite-area/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/infinite1-1024x512.jpg",
+    "address": "Via S. Gaetano, 113/a, 31044 Montebelluna TV, Italia",
+    "city": "Montebelluna TV"
+  },
+  {
+    "name": "Modesk",
+    "link": "https://app.urbnx.com/locations/modesk/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/modesk6-768x1024.jpg",
+    "address": "Via Monticano, 30, 30016 Jesolo VE, Italia",
+    "city": "Jesolo VE"
+  },
+  {
+    "name": "G-Gravity Hub",
+    "link": "https://app.urbnx.com/locations/g-gravity-hub/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/g-gravity1-1024x768.jpg",
+    "address": "Via Legnone, 4, 20159 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Castello di Piovera",
+    "link": "https://app.urbnx.com/locations/castello-di-piovera/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/02/20201028_CastelloPiovera-0001-1024x684.jpg",
+    "address": "Via Balbi, 2, 15040 Piovera AL, Italia",
+    "city": "Piovera AL"
+  },
+  {
+    "name": "Hotel Ristorante Moderno",
+    "link": "https://app.urbnx.com/locations/hotel-ristorante-moderno/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/hotelmoderno-1024x766.jpg",
+    "address": "Via Dante Alighieri, 2, 24030 Fuipiano Valle Imagna BG, Italia",
+    "city": "Fuipiano Valle Imagna BG"
+  },
+  {
+    "name": "Hotel La Fonte Franciacorta",
+    "link": "https://app.urbnx.com/locations/hotel-la-fonte-franciacorta/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/01/7e0041_37597abc434b45dbb8abc9cabd307461_mv2-1024x683.jpg",
+    "address": "Via dei Sabbioni, 16, 25050 Ome BS, Italia",
+    "city": "Ome BS"
+  },
+  {
+    "name": "Best Western Premier BHR Treviso Hotel",
+    "link": "https://app.urbnx.com/locations/best-western-premier-bhr-treviso-hotel/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/02/01.BHR-Treviso-Hotel_Esterno-giorno.jpg",
+    "address": "Via Postumia Castellana, 2, 31055 Quinto di Treviso TV, Italia",
+    "city": "Quinto di Treviso TV"
+  },
+  {
+    "name": "HOTEL LA FAVORITA",
+    "link": "https://app.urbnx.com/locations/hotel-la-favorita/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/MGA-esterno_2-1024x684.jpg",
+    "address": "Via Salvatore Cognetti de Martiis, 1, 46100 Case Ghisiolo MN, Italia",
+    "city": "Case Ghisiolo MN"
+  },
+  {
+    "name": "NYX Hotel Milan",
+    "link": "https://app.urbnx.com/locations/nyx-hotel-milan/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/02/NYXMilan_Facade1_2019-1-1.jpg",
+    "address": "Piazza Quattro Novembre, 3, 20124 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Novotel Torino",
+    "link": "https://app.urbnx.com/locations/novotel-torino/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/3306_ho_00_p_1024x768.jpg",
+    "address": "Corso Giulio Cesare, 338/34, 10154 Torino TO, Italia",
+    "city": "Torino TO"
+  },
+  {
+    "name": "Villa Ducale",
+    "link": "https://app.urbnx.com/locations/villa-ducale/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/11/villaducale1.jpg",
+    "address": "Via Monte Lozzo 33, 35031 Abano Terme PD",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "Novotel Milano Linate",
+    "link": "https://app.urbnx.com/locations/novotel-milano-linate/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/EDB-4312-1024x683.jpg",
+    "address": "Via Mecenate, 20138 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "ISEOLAGO HOTEL",
+    "link": "https://app.urbnx.com/locations/iseolago-hotel/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/Hall-1024x671.jpg",
+    "address": "Via Colombera, 2, 25049 Iseo BS, Italia",
+    "city": "Iseo BS"
+  },
+  {
+    "name": "Jet Hotel",
+    "link": "https://app.urbnx.com/locations/jet-hotel/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/MICH4291-1024x683.jpg",
+    "address": "Via Tiro a Segno, 22, 21013 Gallarate VA, Italia",
+    "city": "Gallarate VA"
+  },
+  {
+    "name": "Hotel Cora",
+    "link": "https://app.urbnx.com/locations/hotel-cora/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/HotelCora-areeComuni-015-8027-min-1024x768.jpg",
+    "address": "Via della Valle, 75, 20841 Carate Brianza MB, Italia",
+    "city": "Carate Brianza MB"
+  },
+  {
+    "name": "Ostello Bello Grande - Milano Centrale",
+    "link": "https://app.urbnx.com/locations/ostello-bello-grande-milano-centrale/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/OBG_SPAZICOMUNI_BAR-1-1024x683.jpg",
+    "address": "Via Roberto Lepetit, 33, 20124 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "DoubleTree by Hilton Milan Malpensa Solbiate Olona",
+    "link": "https://app.urbnx.com/locations/doubletree-by-hilton-milan-malpensa-solbiate-olona/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/181-1024x683.jpg",
+    "address": "Via per Busto Arsizio, 7, 21058 Solbiate Olona VA, Italia",
+    "city": "Solbiate Olona VA"
+  },
+  {
+    "name": "Impact Hub Trentino",
+    "link": "https://app.urbnx.com/locations/impact-hub-trentino/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/2021.02-foto-Marco16-1024x683.jpg",
+    "address": "Via Roberto da Sanseverino, Trento TN, Italia",
+    "city": ""
+  },
+  {
+    "name": "Casa Babbuino",
+    "link": "https://app.urbnx.com/locations/casa-babbuino/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/CasailBabbuino-1-1024x683.jpg",
+    "address": "Via Venti Settembre, 120, 37129 Verona VR, Italia",
+    "city": "Verona VR"
+  },
+  {
+    "name": "Hotel Diamante Alessandria",
+    "link": "https://app.urbnx.com/locations/hotel-diamante-alessandria/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/AGA-esterno3-1024x672.jpg",
+    "address": "Viale della Valletta, 15122 Alessandria AL, Italia",
+    "city": "Alessandria AL"
+  },
+  {
+    "name": "Hotel Resort &amp; Spa Miramonti",
+    "link": "https://app.urbnx.com/locations/hotel-resort-spa-miramonti/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/Mira19_590.jpg",
+    "address": "Via alle Fonti, 5, 24037 Rota D'imagna BG, Italia",
+    "city": "Rota D'imagna BG"
+  },
+  {
+    "name": "Ibis Milano Malpensa Aeroporto",
+    "link": "https://app.urbnx.com/locations/ibis-milano-malpensa-aeroporto/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/BO0A1178-1024x678.jpg",
+    "address": "Via Al Campo, 100, 21010 Cardano Al Campo VA, Italia",
+    "city": "Cardano Al Campo VA"
+  },
+  {
+    "name": "BW HotelGoldenmile****",
+    "link": "https://app.urbnx.com/locations/bw-hotelgoldenmile/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/05/BW-GM-7-1024x589.jpg",
+    "address": "Viale Cristoforo Colombo, 33, 20090 Trezzano sul Naviglio MI, Italia",
+    "city": "Trezzano sul Naviglio MI"
+  },
+  {
+    "name": "Novotel Milano Malpensa Aeroporto",
+    "link": "https://app.urbnx.com/locations/novotel-milano-malpensa-aeroporto/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/03/LUC2665.jpg",
+    "address": "Via Al Campo, 99, 21010 Cardano Al Campo VA, Italia",
+    "city": "Cardano Al Campo VA"
+  },
+  {
+    "name": "Hotel Rivalago",
+    "link": "https://app.urbnx.com/locations/hotel-rivalago/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/05/3-1024x682.jpg",
+    "address": "Via L. Cadorna, 7, 25058 Sulzano BS, Italia",
+    "city": "Sulzano BS"
+  },
+  {
+    "name": "Hyatt Centric Milano",
+    "link": "https://app.urbnx.com/locations/hyatt-centric-milano/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/smartworkplace1-1024x684.jpg",
+    "address": "Via Monte Lozzo 33, 35031 Abano Terme PD",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "Muraless Art Hotel",
+    "link": "https://app.urbnx.com/locations/muraless-art-hotel/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/07/Muraless-Art-Hotel-240123-011-1024x683.jpg",
+    "address": "Via Scuderlando, 122, 37060 Castel D'Azzano VR, Italia",
+    "city": "Castel D'Azzano VR"
+  },
+  {
+    "name": "Social levante",
+    "link": "https://app.urbnx.com/locations/social-levante/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/08/PSX_20221011_121613-01-3-1-909x1024.jpeg",
+    "address": "Via Aurelia, 73, 16039 Sestri Levante GE, Italia",
+    "city": "Sestri Levante GE"
+  },
+  {
+    "name": "Pick Center",
+    "link": "https://app.urbnx.com/locations/pick-center/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/09/CowoPlus7.jpg",
+    "address": "Via Boezio, 4c, 00193 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "Della Chiara Workspaces",
+    "link": "https://app.urbnx.com/locations/della-chiara-workspaces/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/07/Area-Lounge-e-Meeting-Room-1024x669.jpg",
+    "address": "Via della Selva Grossa, 24, 61122 Pesaro PU, Italia",
+    "city": "Pesaro PU"
+  },
+  {
+    "name": "South Working Castelbuono",
+    "link": "https://app.urbnx.com/locations/south-working-castelbuono/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/u1.jpeg",
+    "address": "Piazza S. Francesco, 3, 90013 Castelbuono PA, Italia",
+    "city": "Castelbuono PA"
+  },
+  {
+    "name": "COWO®- MILANO STAZIONE CENTRALE",
+    "link": "https://app.urbnx.com/locations/cowo-milano-stazione-centrale/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/08/ORIZZ-AREA-BREAK-1024x810.jpg",
+    "address": "Via Soperga, 14, 20127 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Magnisi Studio",
+    "link": "https://app.urbnx.com/locations/magnisi-studio/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/IMG_1703-1024x683.jpg",
+    "address": "Via E. Amari, 148, 90139 Palermo PA, Italia",
+    "city": "Palermo PA"
+  },
+  {
+    "name": "Starhotels E.c.ho",
+    "link": "https://app.urbnx.com/locations/starhotels-e-c-ho/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/postazione_echo-1.jpg",
+    "address": "Viale Andrea Doria, 4, 20124 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Starhotels Terminus",
+    "link": "https://app.urbnx.com/locations/starhotels-terminus/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/Starhotels-Terminus_Na_Hall_2_Canne-1-1024x1024.jpg",
+    "address": "Piazza Garibaldi e vicino la Stazione Centrale.",
+    "city": ""
+  },
+  {
+    "name": "Starhotels Business Palace",
+    "link": "https://app.urbnx.com/locations/starhotels-business-palace/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/Hall-Hotel-2-1024x935.jpg",
+    "address": "Via Privata Pietro Gaggia, 3, 20139 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Starhotels President",
+    "link": "https://app.urbnx.com/locations/starhotels-president/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/ext-2.0-Starhotels-President-1-1024x1024.jpg",
+    "address": "Via XX Settembre, Piazza De Ferrari ed 10 minuti dalle vie dello shopping: Via Roma",
+    "city": ""
+  },
+  {
+    "name": "Sant'Ilario Offices",
+    "link": "https://app.urbnx.com/locations/santilario-offices/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/4-1024x768.jpeg",
+    "address": "Via Roma, 36, 42049 Sant'Ilario d'Enza RE, Italia",
+    "city": "Sant'Ilario d'Enza RE"
+  },
+  {
+    "name": "Starhotels Metropole",
+    "link": "https://app.urbnx.com/locations/starhotels-metropole/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/11/tavolo-foyer-768x1024.jpg",
+    "address": "Via Principe Amedeo, 3, 00184 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "Hotel President",
+    "link": "https://app.urbnx.com/locations/hotel-president/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/reception-1024x576.jpg",
+    "address": "Viale della Pittura, 33054 Lignano Sabbiadoro UD, Italia",
+    "city": "Lignano Sabbiadoro UD"
+  },
+  {
+    "name": "ART HOTEL MUSEO",
+    "link": "https://app.urbnx.com/locations/art-hotel-museo/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/12/ingresso-hotel-bis.jpg",
+    "address": "Via Monte Lozzo 33, 35031 Abano Terme PD",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "E618",
+    "link": "https://app.urbnx.com/locations/e618/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/11/F45-11_compressed.jpg",
+    "address": "Via Modena, 19, 44122 Ferrara FE, Italia",
+    "city": "Ferrara FE"
+  },
+  {
+    "name": "Luogocomune Coworking Sharing Leisure",
+    "link": "https://app.urbnx.com/locations/luogocomune-coworking-sharing-leisure/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/12/IMG_6791-819x1024.jpeg",
+    "address": "Via Giacomo Matteotti, 21, 40128 Bologna BO, Italia",
+    "city": "Bologna BO"
+  },
+  {
+    "name": "Control Fitness",
+    "link": "https://app.urbnx.com/locations/control-fitness/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/11/SIM03240-684x1024.jpg",
+    "address": "Via Polibio, 20144 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Prime Paderno Dugnano",
+    "link": "https://app.urbnx.com/locations/prime-paderno-dugnano/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/12/Paderno-sala-1-1024x577.jpg",
+    "address": "Via Bruno Buozzi, 14, 20037 Paderno Dugnano MI, Italy",
+    "city": "Paderno Dugnano MI"
+  },
+  {
+    "name": "Cava Marlò",
+    "link": "https://app.urbnx.com/locations/cava-marlo-2/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/01/CAVA-MARLO_web-60-1024x684.jpg",
+    "address": "Via Monte Lozzo 33, 35031 Abano Terme PD",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "Scrivania Condivisa a Prato",
+    "link": "https://app.urbnx.com/locations/scrivania-condivisa-a-prato/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/01/WhatsApp-Image-2024-01-16-at-10.36.17-PM.jpeg",
+    "address": "Via Galcianese, 34, 59100 Prato PO, Italia",
+    "city": "Prato PO"
+  },
+  {
+    "name": "Innside Milano Torre GalFa",
+    "link": "https://app.urbnx.com/locations/innside-milano-torre-galfa/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/003InnsideMilanoTorreGalFa-Main-Entrance-1-1024x683.jpg",
+    "address": "Via Gustavo Fara, 41, 20124 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "YATTA!",
+    "link": "https://app.urbnx.com/locations/yatta/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/02/YATTA-coworking-1-1024x683.jpg",
+    "address": "Viale Pasubio, 14, 20154 Milano MI, Italy",
+    "city": "Milano MI"
+  },
+  {
+    "name": "NOVOTEL PARMA CENTRO",
+    "link": "https://app.urbnx.com/locations/novotel-parma-centro/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/01/Hotel-hall-3_11zon-1024x683.jpg",
+    "address": "Via Trento, 9, 43122 Parma PR, Italy",
+    "city": "Parma PR"
+  },
+  {
+    "name": "Cervelli in Azione srl - coworking",
+    "link": "https://app.urbnx.com/locations/cervelli-in-azione-srl-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/02/WhatsApp-Image-2024-02-12-at-16.17.30-1024x768.jpeg",
+    "address": "Viale Antonio Silvani, 6c, 40131 Bologna BO, Italia",
+    "city": "Bologna BO"
+  },
+  {
+    "name": "Domo",
+    "link": "https://app.urbnx.com/locations/domo/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/02/Suite_City_View_Domo_gallery_view_2_3-1024x639.jpg",
+    "address": "Via Mazzini, 32, 34121 Trieste TS, Italia",
+    "city": "Trieste TS"
+  },
+  {
+    "name": "SerenDPT Coworking Venice",
+    "link": "https://app.urbnx.com/locations/serendpt-coworking-venice/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/serendpt4-1024x577.jpg",
+    "address": "Via Monte Lozzo 33, 35031 Abano Terme PD",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "Deus Portal Club",
+    "link": "https://app.urbnx.com/locations/deus-portal-club/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/02/IMG_1735.jpg",
+    "address": "Via Genova Thaon di Revel, 3, 20159 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Regus Varese Volta",
+    "link": "https://app.urbnx.com/locations/regus-varese-volta/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/03/Regus-Varese-Sala-Riunione-3-1.jpg",
+    "address": "Via Alessandro Volta, 9, 21100 Varese VA, Italy",
+    "city": "Varese VA"
+  },
+  {
+    "name": "Regus Como",
+    "link": "https://app.urbnx.com/locations/regus-como/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/03/c57e0ae2-94cb-41cc-9e2e-965e96cdfa80.jpg",
+    "address": "Via Cecilio, 2, 22100 Como CO, Italy",
+    "city": "Como CO"
+  },
+  {
+    "name": "Talent Garden Isola",
+    "link": "https://app.urbnx.com/locations/talent-garden-isola/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/03/P1170563-1024x683.jpg",
+    "address": "Piazza Città di Lombardia, 1, 20124 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Villa Foscarini Rossi",
+    "link": "https://app.urbnx.com/locations/villa-foscarini-rossi/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/07/IMG_9444-1024x768.jpg",
+    "address": "Via Doge Pisani, 1, 30039 Stra VE, Italia",
+    "city": "Stra VE"
+  },
+  {
+    "name": "METODO ZERO",
+    "link": "https://app.urbnx.com/locations/metodo-zero/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/03/Chiara-Grossi-5-1024x684.jpg",
+    "address": "Via Niccolò Tommaseo, 96A, 35131 Padova PD, Italia",
+    "city": "Padova PD"
+  },
+  {
+    "name": "Lotto Cinque Coworking",
+    "link": "https://app.urbnx.com/locations/lotto-cinque-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/08/ABS_4817-1024x681.jpg",
+    "address": "Via Strecciola, 5, 23864 Malgrate LC, Italia",
+    "city": "Malgrate LC"
+  },
+  {
+    "name": "Villa Bornello",
+    "link": "https://app.urbnx.com/locations/villa-bornello/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/04/facciata_sud_02-1024x684.jpg",
+    "address": "Strada di Santa Bona Vecchia, 31100 Treviso TV, Italia",
+    "city": "Treviso TV"
+  },
+  {
+    "name": "Yoroom Coworking",
+    "link": "https://app.urbnx.com/locations/yoroom-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/04/Hot-desk-YoRoom-1024x683.jpg",
+    "address": "Via Pastrengo, 14, 20159 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Bar Gallery",
+    "link": "https://app.urbnx.com/locations/bar-gallery/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/04/IMG-20240419-WA0004-1024x768.jpg",
+    "address": "Via Monte Lozzo 33, 35031 Abano Terme PD",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "Laboratorio Aperto Piacenza",
+    "link": "https://app.urbnx.com/locations/laboratorio-aperto-piacenza/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/05/navata-centrale-foto-URBNX-1024x684.jpg",
+    "address": "Piazza Alessandro Casali, 10, 29121 Piacenza PC, Italia",
+    "city": "Piacenza PC"
+  },
+  {
+    "name": "The Save Cafè",
+    "link": "https://app.urbnx.com/locations/the-save-cafe/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/05/postazioni-1-768x1024.jpg",
+    "address": "Via di Villa Severini, 32, 00191 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "Gustoteca",
+    "link": "https://app.urbnx.com/locations/gustoteca/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/03/Senza-titolo-3_Tavola-disegno-1-copia-8-1024x576.png",
+    "address": "Via Venezia, 106, 35129 Padova PD, Italia",
+    "city": "Padova PD"
+  },
+  {
+    "name": "Danama Space Coworking",
+    "link": "https://app.urbnx.com/locations/danama-space-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/06/UFFICIO-PRIVATO_SPACE-13-1024x682.jpeg",
+    "address": "Via Tiepolo, 14, 59100 Prato PO, Italy",
+    "city": "Prato PO"
+  },
+  {
+    "name": "Urban Hive Milano",
+    "link": "https://app.urbnx.com/locations/urban-hive-milano/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/02/AlbertoBlasetti-9337-Copia-1024x683.jpg",
+    "address": "Corso Garibaldi, 84, 20121 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "G27 Coworking Roma EUR",
+    "link": "https://app.urbnx.com/locations/g27-coworking-roma-eur/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/07/g27-5259-1024x683.jpg",
+    "address": "Via Groenlandia, 27, 00144 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "STAY360",
+    "link": "https://app.urbnx.com/locations/stay360/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/08/DJI_0113-compressa-1024x576.jpg",
+    "address": "Via Trequanda, 14, 00146 Roma RM, Italy",
+    "city": "Roma RM"
+  },
+  {
+    "name": "Rabbit hole coworking",
+    "link": "https://app.urbnx.com/locations/rabbit-hole-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/10/sottohero-1024x683.jpg",
+    "address": "Via Giovanni Rasori, 14, 20145 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "197 Piermarini Design",
+    "link": "https://app.urbnx.com/locations/197-piermarini-design/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/09/IMG_20240930_174047-857x1024.jpg",
+    "address": "Via dei Prati Fiscali, 197, 00141 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "LDP LAB srl",
+    "link": "https://app.urbnx.com/locations/ldp-lab-srl/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/10/IMG_2145-1024x767.jpeg",
+    "address": "Via Michelangelo Buonarroti, 39, 20145 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "BEST WESTERN GLOBUS HOTEL",
+    "link": "https://app.urbnx.com/locations/best-western-globus-hotel/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/08/IMG_0130-1024x682.jpg",
+    "address": "Viale Ippocrate, Roma RM, Italia",
+    "city": ""
+  },
+  {
+    "name": "Starhotels Majestic",
+    "link": "https://app.urbnx.com/locations/starhotels-majestic/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/10/IMG-3101-768x1024.jpg",
+    "address": "Corso Vittorio Emanuele II e vicino alla Stazione di Porta Nuova, lo Starhotels Majes",
+    "city": ""
+  },
+  {
+    "name": "Coworking &quot;La Miniera&quot;",
+    "link": "https://app.urbnx.com/locations/coworking-la-miniera/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-09-25-at-15.17.41-1-1024x768.jpeg",
+    "address": "Via della Pace I Traversa, 19033 Colombiera-molicciara SP, Italia",
+    "city": "Colombiera-molicciara SP"
+  },
+  {
+    "name": "Vanni",
+    "link": "https://app.urbnx.com/locations/vanni/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/12/ingresso.jpg",
+    "address": "Via Col di Lana, 10, 00195 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "TownHouse 33",
+    "link": "https://app.urbnx.com/locations/townhouse-33/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/05/Immagine-WhatsApp-2024-05-15-ore-21.09.55_1f32ca6c.jpg",
+    "address": "Via Carlo Goldoni, 33, 20129 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Co-Working area di Radisson Collection Hotel, Santa Sofia Milan",
+    "link": "https://app.urbnx.com/locations/co-working-area-di-radisson-collection-hotel-santa-sofia-milan/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/01/NEW9736-min-683x1024.jpg",
+    "address": "Via Santa Sofia, 37, 20122 Milano MI, Italy",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Expesa Office",
+    "link": "https://app.urbnx.com/locations/expesa-office/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/02/12e4536e-32b3-4425-82de-607592e78d0c-2-1024x768.jpg",
+    "address": "Via Caterina Bon Brenzoni, 17, 37060 Mozzecane VR, Italia",
+    "city": "Mozzecane VR"
+  },
+  {
+    "name": "FAI - Villa dei Vescovi",
+    "link": "https://app.urbnx.com/locations/fai-villa-dei-vescovi/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2023/07/7518_Foto-Laszlo-Rinaldi_2018_C-FAI-Fondo-Ambiente-Italiano-1024x701.jpg",
+    "address": "Via dei Vescovi, 4, 35038 Torreglia PD, Italia",
+    "city": "Torreglia PD"
+  },
+  {
+    "name": "Be Mate Torino Centro",
+    "link": "https://app.urbnx.com/locations/be-mate-torino-centro/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/04/Coworking.png",
+    "address": "Via dell'Arsenale, 17, 10121 Torino TO, Italia",
+    "city": "Torino TO"
+  },
+  {
+    "name": "LamacRoad",
+    "link": "https://app.urbnx.com/locations/lamacroad/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/03/urb1-576x1024.jpeg",
+    "address": "Via Ottavio Assarotti, 14 bis, 10122 Torino TO, Italy",
+    "city": "Torino TO"
+  },
+  {
+    "name": "Alter Risto-Gastronomia",
+    "link": "https://app.urbnx.com/locations/alter-risto-gastronomia/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/04/IMG-20250416-WA0012-1024x768.jpg",
+    "address": "Via Francesco Crispi, 86032 Montecilfone CB, Italia",
+    "city": "Montecilfone CB"
+  },
+  {
+    "name": "Best Western Plus Park Hotel Pordenone",
+    "link": "https://app.urbnx.com/locations/best-western-plus-park-hotel-pordenone/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/04/Screenshot-2025-04-22-111656.png",
+    "address": "Via G. Mazzini, 43, 33170 Pordenone PN, Italia",
+    "city": "Pordenone PN"
+  },
+  {
+    "name": "Conkreta Robotics",
+    "link": "https://app.urbnx.com/locations/conkreta-robotics/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/06/Immagine-WhatsApp-2025-06-10-ore-10.41.15_a5ccd436-768x1024.jpg",
+    "address": "Via Speranza, 37, 40068 San Lazzaro di Savena BO, Italia",
+    "city": "San Lazzaro di Savena BO"
+  },
+  {
+    "name": "Changes Milano",
+    "link": "https://app.urbnx.com/locations/changes-milano/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/01/post-open_05-1024x1024.jpg",
+    "address": "Via Bernardo Quaranta, 45, 20139 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Crowne Plaza Milan Malpensa Airport",
+    "link": "https://app.urbnx.com/locations/crowne-plaza-milan-malpensa-airport/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/06/PG_￼240928_125-2-res-1024x768.jpg",
+    "address": "Via Arturo Ferrarin, 7, 21019 Case Nuove VA, Italia",
+    "city": "Case Nuove VA"
+  },
+  {
+    "name": "Stelle Hotel",
+    "link": "https://app.urbnx.com/locations/stelle-hotel/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/08/IMG-20250804-WA0023-1024x1024.jpg",
+    "address": "Corso Meridionale, 60, 80143 Napoli NA, Italia",
+    "city": "Napoli NA"
+  },
+  {
+    "name": "MT CONSULTING HQ",
+    "link": "https://app.urbnx.com/locations/mt-consulting-hq/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/07/Screenshot-2025-07-28-alle-13.16.13-min-1024x766.png",
+    "address": "Corso Martiri della Liberazione, 56/a, 23900 Lecco LC, Italia",
+    "city": "Lecco LC"
+  },
+  {
+    "name": "Millepiani",
+    "link": "https://app.urbnx.com/locations/millepiani/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2026/01/734.jpg",
+    "address": "Via Nicolo Odero, 00154 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "Wire Coworking",
+    "link": "https://app.urbnx.com/locations/wire-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2024/09/20230725-WIRE-COWORKING-HD-14-1024x683.jpg",
+    "address": "Via Baccio Baldini, 12, 00146 Roma RM, Italia",
+    "city": "Roma RM"
+  },
+  {
+    "name": "The COoffice Agliana",
+    "link": "https://app.urbnx.com/locations/the-cooffice-agliana/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/11/Ufficio-one-1024x693.jpg",
+    "address": "Via della Libertà, 57d, 51031 Agliana PT, Italia",
+    "city": "Agliana PT"
+  },
+  {
+    "name": "Workbox Cernusco",
+    "link": "https://app.urbnx.com/locations/workbox-cernusco/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2026/01/Entrata_1-1024x576.jpg",
+    "address": "Via Monte Lozzo 33, 35031 Abano Terme PD",
+    "city": "Abano Terme PD"
+  },
+  {
+    "name": "Treework Coworking Milano",
+    "link": "https://app.urbnx.com/locations/treework-coworking-milano/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/01/AD365869-DF05-4B17-8C3E-745E5EF3368E-832x1024.jpg",
+    "address": "Via Agordat, 32, 20127 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "Core The Hub",
+    "link": "https://app.urbnx.com/locations/core-the-hub/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2025/10/2025-04-05_CoreBackstageHub_0137-1024x683.jpg",
+    "address": "Via Ruggero Fiore, 36, 00136 Roma RM, Italy",
+    "city": "Roma RM"
+  },
+  {
+    "name": "Locanda Giustini",
+    "link": "https://app.urbnx.com/locations/locanda-giustini/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2026/02/DSCF0770-1024x768.jpg",
+    "address": "Via Enrico Berlinguer, 5, 06081 Assisi PG, Italia",
+    "city": "Assisi PG"
+  },
+  {
+    "name": "Vittoria12 Business Center e Coworking",
+    "link": "https://app.urbnx.com/locations/vittoria12-business-center-e-coworking/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2026/03/SALA-VITTORIA-3-1024x681.jpg",
+    "address": "Corso della Vittoria, 12B, 28100 Novara NO, Italia",
+    "city": "Novara NO"
+  },
+  {
+    "name": "Eapitalia World",
+    "link": "https://app.urbnx.com/locations/eapitalia-world/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2022/12/eap1-768x1024.jpg",
+    "address": "Via Eugenio Chiesa, 6, 20122 Milano MI, Italia",
+    "city": "Milano MI"
+  },
+  {
+    "name": "GRG HUB  srl",
+    "link": "https://app.urbnx.com/locations/grg-hub-srl/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2026/02/dopp-1024x768.jpg",
+    "address": "Via G. D'Annunzio, 74, 31056 Biancade TV, Italia",
+    "city": "Biancade TV"
+  },
+  {
+    "name": "Aba",
+    "link": "https://app.urbnx.com/locations/aba/",
+    "image": "https://app.urbnx.com/wp-content/uploads/2026/05/IMG_1018-713x1024.jpeg",
+    "address": "Via Cicerone, 98, 04100 Latina LT, Italia",
+    "city": "Latina LT"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "name": "urbnx-newsletter",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node generate-newsletter.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.54.0"
+  }
+}
