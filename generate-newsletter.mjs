@@ -198,7 +198,7 @@ async function getZohoToken() {
   return r.access_token;
 }
 
-async function createZohoCampaign(token, subject, html) {
+async function createZohoCampaign(token, subject, contentUrl) {
   const z = CFG.zoho;
   const listDetails = JSON.stringify({ [z.listKey]: [] });
 
@@ -209,7 +209,7 @@ async function createZohoCampaign(token, subject, html) {
     reply_to: z.replyTo,
     subject,
     list_details: listDetails,
-    html_body: html,
+    content_url: contentUrl,
     resfmt: "JSON",
   });
   if (z.topicId) params.set("topicId", z.topicId);
@@ -242,14 +242,18 @@ async function main() {
   writeFileSync("newsletter.html", html);
   console.log("  → newsletter.html salvato");
 
-  if (CFG.zoho.refreshToken) {
+  // Salva il soggetto per la fase Zoho (eseguita dopo il push su GitHub)
+  writeFileSync("newsletter-subject.txt", content.subject);
+
+  const htmlUrl = CFG.htmlUrl;
+  if (htmlUrl && CFG.zoho.refreshToken) {
     console.log("▶ Creo campagna Zoho...");
     const token = await getZohoToken();
-    const result = await createZohoCampaign(token, content.subject, html);
+    const result = await createZohoCampaign(token, content.subject, htmlUrl);
     console.log(`  → Campagna creata: ${result.campaignKey}`);
     console.log("  ℹ️  Bozza salvata su Zoho — verifica e invia manualmente.");
   } else {
-    console.log("ℹ️  Credenziali Zoho non presenti — solo HTML generato.");
+    console.log("ℹ️  HTML generato. Campagna Zoho verrà creata dopo il push.");
   }
 }
 

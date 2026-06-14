@@ -20,9 +20,21 @@ jobs:
 
       - run: npm install @anthropic-ai/sdk
 
-      - name: Genera newsletter e crea campagna Zoho
+      - name: Genera newsletter HTML
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node generate-newsletter.mjs
+
+      - name: Pubblica HTML nel repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add newsletter.html newsletter-subject.txt
+          git diff --cached --quiet || git commit -m "newsletter $(date +'%Y-%m-%d')"
+          git push
+
+      - name: Crea campagna Zoho
+        env:
           ZOHO_CLIENT_ID: ${{ secrets.ZOHO_CLIENT_ID }}
           ZOHO_CLIENT_SECRET: ${{ secrets.ZOHO_CLIENT_SECRET }}
           ZOHO_REFRESH_TOKEN: ${{ secrets.ZOHO_REFRESH_TOKEN }}
@@ -30,12 +42,5 @@ jobs:
           ZOHO_TOPIC_ID: ${{ secrets.ZOHO_TOPIC_ID }}
           ZOHO_FROM_EMAIL: ${{ secrets.ZOHO_FROM_EMAIL }}
           ZOHO_FROM_NAME: "URBNX"
-        run: node generate-newsletter.mjs
-
-      - name: Pubblica HTML nel repo
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add newsletter.html
-          git diff --cached --quiet || git commit -m "newsletter $(date +'%Y-%m-%d')"
-          git push
+          NEWSLETTER_HTML_URL: "https://raw.githubusercontent.com/${{ github.repository }}/main/newsletter.html"
+        run: node create-zoho-campaign.mjs
