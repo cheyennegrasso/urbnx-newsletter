@@ -157,10 +157,10 @@ function buildHtml(content, locations) {
           ? `<a href="${loc.link}" style="display:block;margin-bottom:20px;"><img src="${loc.image}" alt="${loc.name}" width="560" style="width:100%;max-width:560px;height:280px;object-fit:cover;display:block;border-radius:6px;"></a>`
           : ""
       }
-      <h2 style="margin:0 0 4px;font-size:21px;font-weight:700;color:#111;letter-spacing:-0.3px;font-family:${FONT};">${loc.name}</h2>
+      <h2 style="margin:0 0 4px;font-size:21px;font-weight:700;color:#542784;letter-spacing:-0.3px;font-family:${FONT};">${loc.name}</h2>
       ${loc.city ? `<p style="margin:0 0 16px;font-size:13px;color:#aaa;font-family:${FONT};">${loc.city}</p>` : `<p style="margin:0 0 16px;"></p>`}
       ${p(content.locations[i].description)}
-      <a href="${loc.link}" style="display:inline-block;font-size:14px;color:#fff;background:#222;text-decoration:none;padding:10px 22px;border-radius:4px;font-weight:600;font-family:${FONT};">${content.locations[i].cta} →</a>
+      <a href="${loc.link}" style="display:inline-block;font-size:14px;color:#fff;background:#542784;text-decoration:none;padding:10px 22px;border-radius:4px;font-weight:600;font-family:${FONT};">${content.locations[i].cta} →</a>
     </td></tr>`
     )
     .join(`<tr><td style="padding:0 0 40px;"><hr style="border:none;border-top:1px solid #f0f0f0;"></td></tr>`);
@@ -179,7 +179,7 @@ function buildHtml(content, locations) {
 
   <!-- HEADER -->
   <tr><td style="padding:28px 40px 20px;border-bottom:1px solid #f0f0f0;">
-    <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#bbb;font-family:${FONT};">URBNX</p>
+    <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#542784;font-family:${FONT};">URBNX</p>
   </td></tr>
 
   <!-- SALUTO + INTRO -->
@@ -192,10 +192,10 @@ function buildHtml(content, locations) {
 
     <!-- TIP -->
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
-      <tr><td style="padding:24px 28px;background:#f8f8f6;border-left:3px solid #333;border-radius:4px;">
+      <tr><td style="padding:24px 28px;background:#f8f8f6;border-left:3px solid #542784;border-radius:4px;">
         <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;font-family:${FONT};">Consiglio della settimana</p>
-        <p style="margin:0 0 16px;font-size:17px;font-weight:700;color:#111;font-family:${FONT};">${content.tip.title}</p>
-        <p style="margin:0 0 16px;font-size:15px;font-weight:700;color:#222;line-height:1.6;padding:12px 16px;background:#fff;border-radius:4px;font-family:${FONT};">${content.tip.highlight}</p>
+        <p style="margin:0 0 16px;font-size:17px;font-weight:700;color:#542784;font-family:${FONT};">${content.tip.title}</p>
+        <p style="margin:0 0 16px;font-size:15px;font-weight:700;color:#542784;line-height:1.6;padding:12px 16px;background:#fff;border-radius:4px;font-family:${FONT};">${content.tip.highlight}</p>
         <p style="margin:0;font-size:15px;line-height:1.8;color:#555;font-family:${FONT};">${content.tip.body}</p>
       </td></tr>
     </table>
