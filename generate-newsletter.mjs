@@ -108,8 +108,6 @@ async function generateContent(locations) {
                 },
                 required: ["description", "cta"],
               },
-              minItems: 2,
-              maxItems: 2,
             },
             sign_off: { type: "string", description: "Congedo personale e caldo, 2-3 frasi, firmato come team URBNX" },
           },
@@ -133,8 +131,13 @@ Per il consiglio: spiega il problema che risolve, come applicarlo, cosa cambia d
   });
 
   const toolUse = msg.content.find((c) => c.type === "tool_use");
-  if (!toolUse) throw new Error("Claude non ha restituito tool_use");
-  return toolUse.input;
+  if (!toolUse) throw new Error(`Claude non ha restituito tool_use. Content: ${JSON.stringify(msg.content)}`);
+  const result = toolUse.input;
+  console.log(`  → Campi ricevuti: ${Object.keys(result).join(", ")}`);
+  if (!Array.isArray(result.locations) || result.locations.length < 2) {
+    throw new Error(`locations non valido: ${JSON.stringify(result.locations)}`);
+  }
+  return result;
 }
 
 // ─── 3. HTML EMAIL ─────────────────────────────────────────────────────────
