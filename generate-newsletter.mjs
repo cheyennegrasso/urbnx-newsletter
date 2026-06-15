@@ -79,7 +79,7 @@ async function generateContent(locations) {
 
   const msg = await client.messages.create({
     model: CFG.anthropicModel,
-    max_tokens: 2500,
+    max_tokens: 3000,
     system: SYSTEM,
     messages: [
       {
@@ -107,16 +107,32 @@ Rispondi con questo JSON (tutti i campi obbligatori):
     }
   ],
   "sign_off": "congedo personale e caldo, 2-3 frasi, come la chiusura di una lettera vera. Firma come team URBNX."
-}`,
+}
+
+IMPORTANTE: il JSON deve essere valido. Non usare virgolette doppie (") dentro i valori — usa solo l'apostrofo per le contrazioni italiane. Non inserire a capo nei valori.`,
       },
     ],
   });
 
-  let text = msg.content[0].text.trim();
+  return parseClaudeJson(msg.content[0].text);
+}
+
+function parseClaudeJson(raw) {
+  let text = raw.trim();
   if (text.startsWith("```")) {
-    text = text.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
+    text = text.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "").trim();
   }
-  return JSON.parse(text);
+  try {
+    return JSON.parse(text);
+  } catch {
+    // Fix literal newlines and tabs inside JSON strings
+    const fixed = text
+      .replace(/\r\n/g, " ")
+      .replace(/\n/g, " ")
+      .replace(/\t/g, " ")
+      .replace(/[ ]{2,}/g, " ");
+    return JSON.parse(fixed);
+  }
 }
 
 // ─── 3. HTML EMAIL ─────────────────────────────────────────────────────────
