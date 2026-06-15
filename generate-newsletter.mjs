@@ -134,8 +134,14 @@ Per il consiglio: l'highlight deve essere la frase che la persona si ricorderà.
   if (!toolUse) throw new Error(`Claude non ha restituito tool_use. Content: ${JSON.stringify(msg.content)}`);
   const result = toolUse.input;
   console.log(`  → Campi ricevuti: ${Object.keys(result).join(", ")}`);
+  if (typeof result.locations === "string") {
+    try { result.locations = JSON.parse(result.locations); } catch {}
+  }
   if (!Array.isArray(result.locations) || result.locations.length < 2) {
     throw new Error(`locations non valido: ${JSON.stringify(result.locations)}`);
+  }
+  if (typeof result.tip === "string") {
+    try { result.tip = JSON.parse(result.tip); } catch {}
   }
   if (!result.tip?.highlight) result.tip.highlight = result.tip.title;
   return result;
