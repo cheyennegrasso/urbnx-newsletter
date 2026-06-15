@@ -19,12 +19,30 @@ const post = (url, opts) =>
     const req = https.request(url, opts, (r) => {
       let d = "";
       r.on("data", (c) => (d += c));
-      r.on("end", () => res(JSON.parse(d)));
+      r.on("end", () => {
+        try { res(JSON.parse(d)); } catch { rej(new Error(`JSON parse error: ${d}`)); }
+      });
     });
     req.on("error", rej);
     if (opts.body) req.write(opts.body);
     req.end();
   });
+
+const postWithRetry = async (url, opts, attempts = 3) => {
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await post(url, opts);
+    } catch (e) {
+      if (i === attempts - 1) throw e;
+      const wait = 2000 * (i + 1);
+      console.log(`  ⚠ Errore rete (${e.message}), riprovo tra ${wait / 1000}s...`);
+      await new Promise((r) => setTimeout(r, wait));
+    }
+  }
+};
+
+const d = new Date();
+const campaignName = `Newsletter ${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}`;
 
 async function main() {
   console.log("▶ Ottengo token Zoho...");
@@ -34,24 +52,23 @@ async function main() {
     client_secret: z.clientSecret,
     grant_type: "refresh_token",
   });
-  const tr = await post(`https://accounts.zoho.eu/oauth/v2/token?${tp}`, { method: "POST" });
+  const tr = await postWithRetry(`https://accounts.zoho.eu/oauth/v2/token?${tp}`, { method: "POST" });
   if (!tr.access_token) throw new Error(`Token error: ${JSON.stringify(tr)}`);
 
   console.log("▶ Creo campagna Zoho...");
-  const listDetails = JSON.stringify({ [z.listKey]: [] });
   const cp = new URLSearchParams({
-    campaignname: `Newsletter URBNX – ${new Date().toLocaleDateString("it-IT")}`,
+    campaignname: campaignName,
     from_email: z.fromEmail,
     from_name: z.fromName,
     reply_to: z.fromEmail,
     subject,
-    list_details: listDetails,
+    list_details: JSON.stringify({ [z.listKey]: [] }),
     content_url: htmlUrl,
     resfmt: "JSON",
   });
   if (z.topicId) cp.set("topicId", z.topicId);
 
-  const cr = await post("https://campaigns.zoho.eu/api/v2/createCampaign", {
+  const cr = await postWithRetry("https://campaigns.zoho.eu/api/v2/createCampaign", {
     method: "POST",
     headers: {
       Authorization: `Zoho-oauthtoken ${tr.access_token}`,
@@ -61,7 +78,7 @@ async function main() {
   });
 
   if (cr.code !== "200") throw new Error(`Zoho error: ${JSON.stringify(cr)}`);
-  console.log(`  → Campagna creata: ${cr.campaignKey}`);
+  console.log(`  → Campagna "${campaignName}" creata: ${cr.campaignKey}`);
   console.log("  ℹ️  Bozza salvata su Zoho — verifica e invia manualmente.");
 }
 
