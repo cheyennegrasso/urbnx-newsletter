@@ -69,8 +69,7 @@ function pickLocations() {
 const SYSTEM = `Sei Cheyenne, founder di URBNX — la piattaforma italiana che aiuta i professionisti a lavorare da location alternative (hotel, castelli, agriturismi, spazi di coworking unici).
 Scrivi la newsletter settimanale in prima persona plurale ("noi di URBNX", "vi portiamo", "abbiamo scelto").
 Tono: caldo, diretto, appassionato. Come se scrivessi a un amico che condivide la tua stessa visione del lavoro. Niente linguaggio da brochure o da marketing.
-Scrivi testi lunghi, narrativi, pieni di dettagli concreti e osservazioni genuine. Le persone devono volersi fermare a leggere.
-Non inventare dati o URL. Rispondi SOLO con JSON valido, nessun testo extra.`;
+Non inventare dati o URL.`;
 
 async function generateContent(locations) {
   const locationSummary = locations
@@ -89,21 +88,22 @@ async function generateContent(locations) {
           type: "object",
           properties: {
             subject: { type: "string", description: "Oggetto email curioso e specifico, max 50 caratteri" },
-            intro: { type: "string", description: "Apertura personale e narrativa, 130-150 parole, prima persona plurale, autentica e non generica" },
+            intro: { type: "string", description: "Inizia con un dato, fatto o osservazione sorprendente sul lavoro remoto o sulle abitudini dei professionisti italiani oggi (non inventare numeri). Poi collega alla visione URBNX. 100-120 parole, prima persona plurale, tono diretto e personale." },
             tip: {
               type: "object",
               properties: {
                 title: { type: "string", description: "Titolo consiglio pratico, max 55 caratteri" },
-                body: { type: "string", description: "Sviluppo del consiglio con dettagli concreti, 110-130 parole" },
+                highlight: { type: "string", description: "Una frase breve e d'impatto che cattura il cuore del consiglio, max 18 parole. Sarà mostrata in grassetto e in evidenza." },
+                body: { type: "string", description: "Sviluppo del consiglio: spiega il problema, la soluzione concreta, cosa cambia. 80-100 parole." },
               },
-              required: ["title", "body"],
+              required: ["title", "highlight", "body"],
             },
             locations: {
               type: "array",
               items: {
                 type: "object",
                 properties: {
-                  description: { type: "string", description: "Descrizione sensoriale e concreta della location, 100-120 parole" },
+                  description: { type: "string", description: "Descrizione vivida e sensoriale della location: atmosfera, luce, sensazioni, cosa si mangia o si vede. 60-80 parole, concreto e diretto." },
                   cta: { type: "string", description: "Testo del link, max 20 caratteri" },
                 },
                 required: ["description", "cta"],
@@ -123,9 +123,9 @@ async function generateContent(locations) {
 
 ${locationSummary}
 
-Per l'intro: racconta qualcosa di autentico sul modo di lavorare oggi, un'osservazione vera, 130-150 parole.
-Per ogni location: descrivi atmosfera, luce, sensazioni, cosa si mangia, come ci si sente — concreto e sensoriale, 100-120 parole.
-Per il consiglio: spiega il problema che risolve, come applicarlo, cosa cambia davvero, 110-130 parole.`,
+Per l'intro: apri con un fatto o osservazione concreta sul lavoro da remoto in Italia oggi, poi porta alla visione URBNX. Scrivi come se stessi raccontando a un amico qualcosa che ti ha colpito questa settimana. 100-120 parole.
+Per ogni location: descrivi cosa si vede, si sente, si respira. Due o tre immagini precise valgono più di dieci aggettivi generici. 60-80 parole.
+Per il consiglio: l'highlight deve essere la frase che la persona si ricorderà. Il body spiega il perché in modo pratico.`,
       },
     ],
   });
@@ -137,6 +137,7 @@ Per il consiglio: spiega il problema che risolve, come applicarlo, cosa cambia d
   if (!Array.isArray(result.locations) || result.locations.length < 2) {
     throw new Error(`locations non valido: ${JSON.stringify(result.locations)}`);
   }
+  if (!result.tip?.highlight) result.tip.highlight = result.tip.title;
   return result;
 }
 
@@ -193,7 +194,8 @@ function buildHtml(content, locations) {
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
       <tr><td style="padding:24px 28px;background:#f8f8f6;border-left:3px solid #333;border-radius:4px;">
         <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;font-family:${FONT};">Consiglio della settimana</p>
-        <p style="margin:0 0 12px;font-size:17px;font-weight:700;color:#111;font-family:${FONT};">${content.tip.title}</p>
+        <p style="margin:0 0 16px;font-size:17px;font-weight:700;color:#111;font-family:${FONT};">${content.tip.title}</p>
+        <p style="margin:0 0 16px;font-size:15px;font-weight:700;color:#222;line-height:1.6;padding:12px 16px;background:#fff;border-radius:4px;font-family:${FONT};">${content.tip.highlight}</p>
         <p style="margin:0;font-size:15px;line-height:1.8;color:#555;font-family:${FONT};">${content.tip.body}</p>
       </td></tr>
     </table>
