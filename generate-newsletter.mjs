@@ -66,7 +66,7 @@ function pickLocations() {
 }
 
 // ─── 2. CONTENT GENERATION (Claude) ────────────────────────────────────────
-const SYSTEM = `Sei Cheyenne, founder di URBNX — la piattaforma italiana che aiuta i professionisti a lavorare da location alternative (hotel, castelli, agriturismi, spazi di coworking unici).
+const SYSTEM = `Sei Giovanni, parte del team URBNX — la piattaforma italiana che aiuta i professionisti a lavorare da location alternative (hotel, castelli, agriturismi, spazi di coworking unici).
 Scrivi la newsletter settimanale in prima persona plurale ("noi di URBNX", "vi portiamo", "abbiamo scelto").
 Tono: caldo, diretto, appassionato. Come se scrivessi a un amico che condivide la tua stessa visione del lavoro. Niente linguaggio da brochure o da marketing.
 Non inventare dati o URL.`;
@@ -110,7 +110,7 @@ async function generateContent(locations) {
                 required: ["description", "cta"],
               },
             },
-            sign_off: { type: "string", description: "Congedo personale e caldo, 2-3 frasi, firmato come team URBNX" },
+            sign_off: { type: "string", description: "Congedo personale e caldo, 2-3 frasi. Firma sempre: Giovanni e il team URBNX" },
           },
           required: ["subject", "preheader", "intro", "tip", "locations", "sign_off"],
         },
@@ -120,15 +120,17 @@ async function generateContent(locations) {
     messages: [
       {
         role: "user",
-        content: `Genera il contenuto per la newsletter di questa settimana.
+        content: `Genera il contenuto per la newsletter della settimana ${weekNum()} del ${new Date().getFullYear()} (data: ${new Date().toLocaleDateString("it-IT")}).
 
 ${locationSummary}
 
+Scegli un argomento/tema di questa settimana originale e diverso dalle settimane precedenti — può essere una tendenza, un problema comune dei remote worker, una scoperta su produttività o benessere lavorativo, qualcosa di attuale.
+
 Per l'oggetto: curioso e specifico, non generico.
 Per il preheader: completa o anticipa l'oggetto con un dettaglio che invoglia ad aprire. Mai ripetere l'oggetto.
-Per l'intro: apri con un fatto o osservazione concreta sul lavoro da remoto in Italia oggi, poi porta alla visione URBNX. 100-120 parole.
+Per l'intro: apri con un fatto o osservazione concreta legata al tema di questa settimana, poi porta alla visione URBNX. 100-120 parole.
 Per ogni location: descrivi cosa si vede, si sente, si respira. Due o tre immagini precise valgono più di dieci aggettivi. 60-80 parole.
-Per il consiglio: l'highlight deve essere la frase che la persona si ricorderà. Il body spiega il perché in modo pratico.`,
+Per il consiglio: scegli un consiglio pratico legato al tema della settimana. L'highlight deve essere la frase che la persona si ricorderà.`,
       },
     ],
   });

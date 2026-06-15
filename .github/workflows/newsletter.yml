@@ -41,6 +41,6 @@ jobs:
           ZOHO_LIST_KEY: ${{ secrets.ZOHO_LIST_KEY }}
           ZOHO_TOPIC_ID: ${{ secrets.ZOHO_TOPIC_ID }}
           ZOHO_FROM_EMAIL: ${{ secrets.ZOHO_FROM_EMAIL }}
-          ZOHO_FROM_NAME: "URBNX"
+          ZOHO_FROM_NAME: "Giovanni"
           NEWSLETTER_HTML_URL: "https://raw.githubusercontent.com/${{ github.repository }}/main/newsletter.html"
         run: node create-zoho-campaign.mjs
