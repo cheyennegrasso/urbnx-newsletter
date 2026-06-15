@@ -68,8 +68,8 @@ function pickLocations() {
 // ─── 2. CONTENT GENERATION (Claude) ────────────────────────────────────────
 const SYSTEM = `Sei Cheyenne, founder di URBNX — la piattaforma italiana che aiuta i professionisti a lavorare da location alternative (hotel, castelli, agriturismi, spazi di coworking unici).
 Scrivi la newsletter settimanale in prima persona plurale ("noi di URBNX", "vi portiamo", "abbiamo scelto").
-Tono: caldo, diretto, appassionato. Come se scrivessi a dei colleghi o amici che condividono la stessa visione del lavoro. Mai linguaggio da brochure o da ufficio marketing.
-Usa frasi vere, non slogan. Le persone devono sentire che c'è un team vero dietro, non un bot.
+Tono: caldo, diretto, appassionato. Come se scrivessi a un amico che condivide la tua stessa visione del lavoro. Niente linguaggio da brochure o da marketing.
+Scrivi testi lunghi, narrativi, pieni di dettagli concreti e osservazioni genuine. Le persone devono volersi fermare a leggere.
 Non inventare dati o URL. Rispondi SOLO con JSON valido, nessun testo extra.`;
 
 async function generateContent(locations) {
@@ -79,7 +79,7 @@ async function generateContent(locations) {
 
   const msg = await client.messages.create({
     model: CFG.anthropicModel,
-    max_tokens: 1800,
+    max_tokens: 2500,
     system: SYSTEM,
     messages: [
       {
@@ -90,23 +90,23 @@ ${locationSummary}
 
 Rispondi con questo JSON (tutti i campi obbligatori):
 {
-  "subject": "oggetto email breve e curioso, max 50 caratteri, non generico",
-  "intro": "paragrafo di apertura personale: parla di come stai vivendo lo smart working questa settimana, cosa hai notato, un pensiero autentico. 4-5 frasi, circa 80-100 parole. Prima persona plurale.",
+  "subject": "oggetto email curioso e specifico, max 50 caratteri, deve incuriosire senza rivelare tutto",
+  "intro": "apertura personale e narrativa: racconta qualcosa di vero e osservato sul modo in cui stiamo lavorando oggi, un momento che hai vissuto o notato questa settimana, un'idea che ti è venuta. Deve sembrare autentica, non generica. Almeno 6-7 frasi, 130-150 parole. Prima persona plurale. Nessun slogan.",
   "tip": {
-    "title": "un consiglio pratico per questa settimana, formulato come suggerimento tra amici, max 50 car",
-    "body": "spiega il consiglio con dettagli concreti: perché funziona, come si applica, cosa cambia davvero. 4-5 frasi, circa 80 parole."
+    "title": "consiglio pratico formulato come insight genuino, max 55 caratteri",
+    "body": "sviluppa il consiglio con profondità: spiega il problema che risolve, come applicarlo passo passo, cosa cambia concretamente nella giornata. Almeno 6 frasi, 110-130 parole. Deve essere utile davvero, non una frase motivazionale."
   },
   "locations": [
     {
-      "description": "racconta questa location come se la stessi consigliando a un amico: che atmosfera ha, cosa la rende speciale per lavorare, che tipo di giornata ci puoi passare. 3-4 frasi, circa 60-70 parole.",
+      "description": "racconta questa location come se la stessi descrivendo dopo averci lavorato: com'è la luce, l'atmosfera, la gente, il silenzio o il rumore, cosa si mangia a pranzo, come ci si sente alle 17. Rendiconto sensoriale e concreto. Almeno 5 frasi, 100-120 parole.",
       "cta": "testo link, max 20 car"
     },
     {
-      "description": "stessa cosa per la seconda location, stessa lunghezza e stesso tono.",
+      "description": "stessa cosa per la seconda location, stesso livello di dettaglio e calore. Almeno 5 frasi, 100-120 parole.",
       "cta": "testo link, max 20 car"
     }
   ],
-  "sign_off": "saluto finale caldo e personale, 1-2 frasi, firma come 'il team URBNX' o simile"
+  "sign_off": "congedo personale e caldo, 2-3 frasi, come la chiusura di una lettera vera. Firma come team URBNX."
 }`,
       },
     ],
@@ -120,9 +120,11 @@ Rispondi con questo JSON (tutti i campi obbligatori):
 }
 
 // ─── 3. HTML EMAIL ─────────────────────────────────────────────────────────
+const FONT = `-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif`;
+
 function buildHtml(content, locations) {
   const p = (text) =>
-    `<p style="margin:0 0 18px;font-size:16px;line-height:1.75;color:#2d2d2d;">${text}</p>`;
+    `<p style="margin:0 0 20px;font-size:16px;line-height:1.8;color:#333;font-family:${FONT};">${text}</p>`;
 
   const locationBlocks = locations
     .map(
@@ -130,16 +132,16 @@ function buildHtml(content, locations) {
     <tr><td style="padding:0 0 40px;">
       ${
         loc.image
-          ? `<a href="${loc.link}" style="display:block;margin-bottom:16px;"><img src="${loc.image}" alt="${loc.name}" width="560" style="width:100%;max-width:560px;height:260px;object-fit:cover;display:block;border-radius:4px;"></a>`
+          ? `<a href="${loc.link}" style="display:block;margin-bottom:20px;"><img src="${loc.image}" alt="${loc.name}" width="560" style="width:100%;max-width:560px;height:280px;object-fit:cover;display:block;border-radius:6px;"></a>`
           : ""
       }
-      <h2 style="margin:0 0 4px;font-size:20px;font-weight:600;color:#111;letter-spacing:-0.3px;">${loc.name}</h2>
-      ${loc.city ? `<p style="margin:0 0 12px;font-size:13px;color:#999;">${loc.city}</p>` : ""}
+      <h2 style="margin:0 0 4px;font-size:21px;font-weight:700;color:#111;letter-spacing:-0.3px;font-family:${FONT};">${loc.name}</h2>
+      ${loc.city ? `<p style="margin:0 0 16px;font-size:13px;color:#aaa;font-family:${FONT};">${loc.city}</p>` : `<p style="margin:0 0 16px;"></p>`}
       ${p(content.locations[i].description)}
-      <a href="${loc.link}" style="font-size:15px;color:#1a1a1a;font-weight:600;text-decoration:underline;">${content.locations[i].cta} →</a>
+      <a href="${loc.link}" style="display:inline-block;font-size:14px;color:#fff;background:#222;text-decoration:none;padding:10px 22px;border-radius:4px;font-weight:600;font-family:${FONT};">${content.locations[i].cta} →</a>
     </td></tr>`
     )
-    .join(`<tr><td style="padding:0 0 40px;"><hr style="border:none;border-top:1px solid #ebebeb;"></td></tr>`);
+    .join(`<tr><td style="padding:0 0 40px;"><hr style="border:none;border-top:1px solid #f0f0f0;"></td></tr>`);
 
   return `<!DOCTYPE html>
 <html lang="it">
@@ -148,37 +150,35 @@ function buildHtml(content, locations) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${content.subject}</title>
 </head>
-<body style="margin:0;padding:0;background:#f9f9f7;font-family:Georgia,'Times New Roman',serif;">
-<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#f9f9f7">
-<tr><td align="center" style="padding:40px 16px;">
-<table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:6px;">
+<body style="margin:0;padding:0;background:#f4f4f2;font-family:${FONT};">
+<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#f4f4f2">
+<tr><td align="center" style="padding:32px 16px;">
+<table width="580" cellpadding="0" cellspacing="0" style="max-width:580px;background:#ffffff;border-radius:8px;overflow:hidden;">
 
   <!-- HEADER -->
-  <tr><td style="padding:32px 40px 24px;">
-    <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">urbnx — smart working</p>
+  <tr><td style="padding:28px 40px 20px;border-bottom:1px solid #f0f0f0;">
+    <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#bbb;font-family:${FONT};">URBNX</p>
   </td></tr>
 
-  <!-- INTRO -->
-  <tr><td style="padding:0 40px 32px;">
+  <!-- SALUTO + INTRO -->
+  <tr><td style="padding:36px 40px 0;">
+    <p style="margin:0 0 20px;font-size:16px;line-height:1.8;color:#333;font-family:${FONT};">Ciao $[FNAME]$,</p>
     ${p(content.intro)}
 
     <!-- DIVIDER -->
-    <hr style="border:none;border-top:1px solid #ebebeb;margin:32px 0;">
+    <hr style="border:none;border-top:1px solid #f0f0f0;margin:8px 0 32px;">
 
     <!-- TIP -->
-    <table width="100%" cellpadding="0" cellspacing="0">
-      <tr><td style="padding:20px 24px;background:#f5f4f0;border-left:3px solid #2d2d2d;border-radius:2px;">
-        <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#888;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">Il consiglio di questa settimana</p>
-        <p style="margin:0 0 10px;font-size:17px;font-weight:600;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">${content.tip.title}</p>
-        <p style="margin:0;font-size:15px;line-height:1.7;color:#444;font-family:Georgia,'Times New Roman',serif;">${content.tip.body}</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+      <tr><td style="padding:24px 28px;background:#f8f8f6;border-left:3px solid #333;border-radius:4px;">
+        <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;font-family:${FONT};">Consiglio della settimana</p>
+        <p style="margin:0 0 12px;font-size:17px;font-weight:700;color:#111;font-family:${FONT};">${content.tip.title}</p>
+        <p style="margin:0;font-size:15px;line-height:1.8;color:#555;font-family:${FONT};">${content.tip.body}</p>
       </td></tr>
     </table>
 
-    <hr style="border:none;border-top:1px solid #ebebeb;margin:32px 0;">
-
-    <!-- LOCATIONS INTRO -->
-    <p style="margin:0 0 28px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">Gli spazi di questa settimana</p>
-
+    <!-- LOCATIONS LABEL -->
+    <p style="margin:0 0 28px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;font-family:${FONT};">Gli spazi di questa settimana</p>
   </td></tr>
 
   <!-- LOCATIONS -->
@@ -189,16 +189,16 @@ function buildHtml(content, locations) {
   </td></tr>
 
   <!-- SIGN OFF -->
-  <tr><td style="padding:8px 40px 40px;">
-    <hr style="border:none;border-top:1px solid #ebebeb;margin:0 0 28px;">
+  <tr><td style="padding:0 40px 36px;">
+    <hr style="border:none;border-top:1px solid #f0f0f0;margin:0 0 28px;">
     ${p(content.sign_off)}
   </td></tr>
 
   <!-- FOOTER -->
-  <tr><td style="padding:20px 40px;border-top:1px solid #ebebeb;text-align:center;">
-    <p style="margin:0;font-size:12px;color:#bbb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <tr><td style="padding:20px 40px;background:#f8f8f6;text-align:center;">
+    <p style="margin:0;font-size:12px;color:#ccc;font-family:${FONT};">
       © ${new Date().getFullYear()} URBNX ·
-      <a href="{{unsubscribe}}" style="color:#bbb;text-decoration:underline;">Annulla iscrizione</a>
+      <a href="{{unsubscribe}}" style="color:#ccc;text-decoration:underline;">Annulla iscrizione</a>
     </p>
   </td></tr>
 
