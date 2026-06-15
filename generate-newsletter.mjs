@@ -88,6 +88,7 @@ async function generateContent(locations) {
           type: "object",
           properties: {
             subject: { type: "string", description: "Oggetto email curioso e specifico, max 50 caratteri" },
+            preheader: { type: "string", description: "Testo anteprima mostrato nelle inbox dopo l'oggetto. Completa o anticipa l'oggetto, mai ripeterlo. Max 90 caratteri." },
             intro: { type: "string", description: "Inizia con un dato, fatto o osservazione sorprendente sul lavoro remoto o sulle abitudini dei professionisti italiani oggi (non inventare numeri). Poi collega alla visione URBNX. 100-120 parole, prima persona plurale, tono diretto e personale." },
             tip: {
               type: "object",
@@ -111,7 +112,7 @@ async function generateContent(locations) {
             },
             sign_off: { type: "string", description: "Congedo personale e caldo, 2-3 frasi, firmato come team URBNX" },
           },
-          required: ["subject", "intro", "tip", "locations", "sign_off"],
+          required: ["subject", "preheader", "intro", "tip", "locations", "sign_off"],
         },
       },
     ],
@@ -123,8 +124,10 @@ async function generateContent(locations) {
 
 ${locationSummary}
 
-Per l'intro: apri con un fatto o osservazione concreta sul lavoro da remoto in Italia oggi, poi porta alla visione URBNX. Scrivi come se stessi raccontando a un amico qualcosa che ti ha colpito questa settimana. 100-120 parole.
-Per ogni location: descrivi cosa si vede, si sente, si respira. Due o tre immagini precise valgono più di dieci aggettivi generici. 60-80 parole.
+Per l'oggetto: curioso e specifico, non generico.
+Per il preheader: completa o anticipa l'oggetto con un dettaglio che invoglia ad aprire. Mai ripetere l'oggetto.
+Per l'intro: apri con un fatto o osservazione concreta sul lavoro da remoto in Italia oggi, poi porta alla visione URBNX. 100-120 parole.
+Per ogni location: descrivi cosa si vede, si sente, si respira. Due o tre immagini precise valgono più di dieci aggettivi. 60-80 parole.
 Per il consiglio: l'highlight deve essere la frase che la persona si ricorderà. Il body spiega il perché in modo pratico.`,
       },
     ],
@@ -149,27 +152,94 @@ Per il consiglio: l'highlight deve essere la frase che la persona si ricorderà.
 
 // ─── 3. HTML EMAIL ─────────────────────────────────────────────────────────
 const FONT = `-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif`;
+const PURPLE = `#542784`;
 
-function buildHtml(content, locations) {
+function buildHtml(content, locations, variant = 0) {
   const p = (text) =>
     `<p style="margin:0 0 20px;font-size:16px;line-height:1.8;color:#333;font-family:${FONT};">${text}</p>`;
 
-  const locationBlocks = locations
-    .map(
-      (loc, i) => `
+  const locBlock = (loc, i, imgHeight = "280px") => `
     <tr><td style="padding:0 0 40px;">
-      ${
-        loc.image
-          ? `<a href="${loc.link}" style="display:block;margin-bottom:20px;"><img src="${loc.image}" alt="${loc.name}" width="560" style="width:100%;max-width:560px;height:280px;object-fit:cover;display:block;border-radius:6px;"></a>`
-          : ""
-      }
-      <h2 style="margin:0 0 4px;font-size:21px;font-weight:700;color:#542784;letter-spacing:-0.3px;font-family:${FONT};">${loc.name}</h2>
+      ${loc.image ? `<a href="${loc.link}" style="display:block;margin-bottom:20px;"><img src="${loc.image}" alt="${loc.name}" width="560" style="width:100%;max-width:560px;height:${imgHeight};object-fit:cover;display:block;border-radius:6px;"></a>` : ""}
+      <h2 style="margin:0 0 4px;font-size:21px;font-weight:700;color:${PURPLE};letter-spacing:-0.3px;font-family:${FONT};">${loc.name}</h2>
       ${loc.city ? `<p style="margin:0 0 16px;font-size:13px;color:#aaa;font-family:${FONT};">${loc.city}</p>` : `<p style="margin:0 0 16px;"></p>`}
       ${p(content.locations[i].description)}
-      <a href="${loc.link}" style="display:inline-block;font-size:14px;color:#fff;background:#542784;text-decoration:none;padding:10px 22px;border-radius:4px;font-weight:600;font-family:${FONT};">${content.locations[i].cta} →</a>
-    </td></tr>`
-    )
-    .join(`<tr><td style="padding:0 0 40px;"><hr style="border:none;border-top:1px solid #f0f0f0;"></td></tr>`);
+      <a href="${loc.link}" style="display:inline-block;font-size:14px;color:#fff;background:${PURPLE};text-decoration:none;padding:10px 22px;border-radius:4px;font-weight:600;font-family:${FONT};">${content.locations[i].cta} →</a>
+    </td></tr>`;
+
+  const divider = `<tr><td style="padding:0 0 40px;"><hr style="border:none;border-top:1px solid #f0f0f0;"></td></tr>`;
+
+  const locationBlocks = locations.map((loc, i) => locBlock(loc, i, variant === 1 ? "320px" : "280px")).join(divider);
+
+  // Layout 0: tip sinistra + bordo → locations
+  // Layout 1: locations (foto più alte) → tip sinistra + bordo
+  // Layout 2: tip centrato come callout → locations
+  const tipStyled = (style) => {
+    if (style === "left-border") return `
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+      <tr><td style="padding:24px 28px;background:#f8f8f6;border-left:3px solid ${PURPLE};border-radius:4px;">
+        <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;font-family:${FONT};">Consiglio della settimana</p>
+        <p style="margin:0 0 16px;font-size:17px;font-weight:700;color:${PURPLE};font-family:${FONT};">${content.tip.title}</p>
+        <p style="margin:0 0 16px;font-size:15px;font-weight:700;color:${PURPLE};line-height:1.6;padding:12px 16px;background:#fff;border-radius:4px;font-family:${FONT};">${content.tip.highlight}</p>
+        <p style="margin:0;font-size:15px;line-height:1.8;color:#555;font-family:${FONT};">${content.tip.body}</p>
+      </td></tr>
+    </table>`;
+    if (style === "top-border") return `
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+      <tr><td style="padding:24px 28px;background:#f8f8f6;border-top:3px solid ${PURPLE};border-radius:4px;">
+        <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;font-family:${FONT};">Consiglio della settimana</p>
+        <p style="margin:0 0 16px;font-size:17px;font-weight:700;color:${PURPLE};font-family:${FONT};">${content.tip.title}</p>
+        <p style="margin:0 0 16px;font-size:15px;font-weight:700;color:${PURPLE};line-height:1.6;padding:12px 16px;background:#fff;border-radius:4px;font-family:${FONT};">${content.tip.highlight}</p>
+        <p style="margin:0;font-size:15px;line-height:1.8;color:#555;font-family:${FONT};">${content.tip.body}</p>
+      </td></tr>
+    </table>`;
+    // callout centrato
+    return `
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+      <tr><td style="padding:32px 28px;background:${PURPLE};border-radius:6px;text-align:center;">
+        <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);font-family:${FONT};">Consiglio della settimana</p>
+        <p style="margin:0 0 16px;font-size:18px;font-weight:700;color:#fff;font-family:${FONT};">${content.tip.title}</p>
+        <p style="margin:0 0 16px;font-size:15px;font-style:italic;color:rgba(255,255,255,0.9);line-height:1.6;font-family:${FONT};">${content.tip.highlight}</p>
+        <p style="margin:0;font-size:14px;line-height:1.8;color:rgba(255,255,255,0.8);font-family:${FONT};">${content.tip.body}</p>
+      </td></tr>
+    </table>`;
+  };
+
+  const locLabel = `<p style="margin:0 0 28px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;font-family:${FONT};">Gli spazi di questa settimana</p>`;
+
+  let middleSection;
+  if (variant === 1) {
+    // locations prima, poi tip
+    middleSection = `
+    ${locLabel}
+  </td></tr>
+  <tr><td style="padding:0 40px;">
+    <table width="100%" cellpadding="0" cellspacing="0">${locationBlocks}</table>
+  </td></tr>
+  <tr><td style="padding:32px 40px 0;">
+    <hr style="border:none;border-top:1px solid #f0f0f0;margin:0 0 32px;">
+    ${tipStyled("top-border")}`;
+  } else if (variant === 2) {
+    // tip callout viola pieno, poi locations
+    middleSection = `
+    ${tipStyled("callout")}
+    ${locLabel}
+  </td></tr>
+  <tr><td style="padding:0 40px;">
+    <table width="100%" cellpadding="0" cellspacing="0">${locationBlocks}</table>
+  </td></tr>
+  <tr><td style="padding:0 40px 0;">`;
+  } else {
+    // default: tip bordo sinistro, poi locations
+    middleSection = `
+    ${tipStyled("left-border")}
+    ${locLabel}
+  </td></tr>
+  <tr><td style="padding:0 40px;">
+    <table width="100%" cellpadding="0" cellspacing="0">${locationBlocks}</table>
+  </td></tr>
+  <tr><td style="padding:0 40px 0;">`;
+  }
 
   return `<!DOCTYPE html>
 <html lang="it">
@@ -179,42 +249,23 @@ function buildHtml(content, locations) {
 <title>${content.subject}</title>
 </head>
 <body style="margin:0;padding:0;background:#f4f4f2;font-family:${FONT};">
+<!-- PREHEADER -->
+<div style="display:none;max-height:0;overflow:hidden;font-size:1px;color:#f4f4f2;">${content.preheader || ""}&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
 <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#f4f4f2">
 <tr><td align="center" style="padding:32px 16px;">
 <table width="580" cellpadding="0" cellspacing="0" style="max-width:580px;background:#ffffff;border-radius:8px;overflow:hidden;">
 
   <!-- HEADER -->
   <tr><td style="padding:28px 40px 20px;border-bottom:1px solid #f0f0f0;">
-    <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#542784;font-family:${FONT};">URBNX</p>
+    <p style="margin:0;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:${PURPLE};font-family:${FONT};">URBNX</p>
   </td></tr>
 
   <!-- SALUTO + INTRO -->
   <tr><td style="padding:36px 40px 0;">
     <p style="margin:0 0 20px;font-size:16px;line-height:1.8;color:#333;font-family:${FONT};">Ciao $[FNAME]$,</p>
     ${p(content.intro)}
-
-    <!-- DIVIDER -->
     <hr style="border:none;border-top:1px solid #f0f0f0;margin:8px 0 32px;">
-
-    <!-- TIP -->
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
-      <tr><td style="padding:24px 28px;background:#f8f8f6;border-left:3px solid #542784;border-radius:4px;">
-        <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#aaa;font-family:${FONT};">Consiglio della settimana</p>
-        <p style="margin:0 0 16px;font-size:17px;font-weight:700;color:#542784;font-family:${FONT};">${content.tip.title}</p>
-        <p style="margin:0 0 16px;font-size:15px;font-weight:700;color:#542784;line-height:1.6;padding:12px 16px;background:#fff;border-radius:4px;font-family:${FONT};">${content.tip.highlight}</p>
-        <p style="margin:0;font-size:15px;line-height:1.8;color:#555;font-family:${FONT};">${content.tip.body}</p>
-      </td></tr>
-    </table>
-
-    <!-- LOCATIONS LABEL -->
-    <p style="margin:0 0 28px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#bbb;font-family:${FONT};">Gli spazi di questa settimana</p>
-  </td></tr>
-
-  <!-- LOCATIONS -->
-  <tr><td style="padding:0 40px;">
-    <table width="100%" cellpadding="0" cellspacing="0">
-      ${locationBlocks}
-    </table>
+    ${middleSection}
   </td></tr>
 
   <!-- SIGN OFF -->
@@ -259,7 +310,7 @@ async function createZohoCampaign(token, subject, contentUrl) {
   const listDetails = JSON.stringify({ [z.listKey]: [] });
 
   const params = new URLSearchParams({
-    campaignname: `Newsletter URBNX – ${new Date().toLocaleDateString("it-IT")}`,
+    campaignname: `Newsletter ${String(new Date().getDate()).padStart(2,"0")}/${String(new Date().getMonth()+1).padStart(2,"0")}`,
     from_email: z.fromEmail,
     from_name: z.fromName,
     reply_to: z.replyTo,
@@ -294,7 +345,9 @@ async function main() {
   console.log(`  → Oggetto: ${content.subject}`);
 
   console.log("▶ Costruisco HTML...");
-  const html = buildHtml(content, locations);
+  const variant = weekNum() % 3;
+  console.log(`  → Layout variante ${variant}`);
+  const html = buildHtml(content, locations, variant);
   writeFileSync("newsletter.html", html);
   console.log("  → newsletter.html salvato");
 
