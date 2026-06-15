@@ -81,6 +81,43 @@ async function generateContent(locations) {
     model: CFG.anthropicModel,
     max_tokens: 3000,
     system: SYSTEM,
+    tools: [
+      {
+        name: "newsletter_content",
+        description: "Genera il contenuto completo della newsletter settimanale URBNX",
+        input_schema: {
+          type: "object",
+          properties: {
+            subject: { type: "string", description: "Oggetto email curioso e specifico, max 50 caratteri" },
+            intro: { type: "string", description: "Apertura personale e narrativa, 130-150 parole, prima persona plurale, autentica e non generica" },
+            tip: {
+              type: "object",
+              properties: {
+                title: { type: "string", description: "Titolo consiglio pratico, max 55 caratteri" },
+                body: { type: "string", description: "Sviluppo del consiglio con dettagli concreti, 110-130 parole" },
+              },
+              required: ["title", "body"],
+            },
+            locations: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  description: { type: "string", description: "Descrizione sensoriale e concreta della location, 100-120 parole" },
+                  cta: { type: "string", description: "Testo del link, max 20 caratteri" },
+                },
+                required: ["description", "cta"],
+              },
+              minItems: 2,
+              maxItems: 2,
+            },
+            sign_off: { type: "string", description: "Congedo personale e caldo, 2-3 frasi, firmato come team URBNX" },
+          },
+          required: ["subject", "intro", "tip", "locations", "sign_off"],
+        },
+      },
+    ],
+    tool_choice: { type: "tool", name: "newsletter_content" },
     messages: [
       {
         role: "user",
@@ -88,51 +125,16 @@ async function generateContent(locations) {
 
 ${locationSummary}
 
-Rispondi con questo JSON (tutti i campi obbligatori):
-{
-  "subject": "oggetto email curioso e specifico, max 50 caratteri, deve incuriosire senza rivelare tutto",
-  "intro": "apertura personale e narrativa: racconta qualcosa di vero e osservato sul modo in cui stiamo lavorando oggi, un momento che hai vissuto o notato questa settimana, un'idea che ti è venuta. Deve sembrare autentica, non generica. Almeno 6-7 frasi, 130-150 parole. Prima persona plurale. Nessun slogan.",
-  "tip": {
-    "title": "consiglio pratico formulato come insight genuino, max 55 caratteri",
-    "body": "sviluppa il consiglio con profondità: spiega il problema che risolve, come applicarlo passo passo, cosa cambia concretamente nella giornata. Almeno 6 frasi, 110-130 parole. Deve essere utile davvero, non una frase motivazionale."
-  },
-  "locations": [
-    {
-      "description": "racconta questa location come se la stessi descrivendo dopo averci lavorato: com'è la luce, l'atmosfera, la gente, il silenzio o il rumore, cosa si mangia a pranzo, come ci si sente alle 17. Rendiconto sensoriale e concreto. Almeno 5 frasi, 100-120 parole.",
-      "cta": "testo link, max 20 car"
-    },
-    {
-      "description": "stessa cosa per la seconda location, stesso livello di dettaglio e calore. Almeno 5 frasi, 100-120 parole.",
-      "cta": "testo link, max 20 car"
-    }
-  ],
-  "sign_off": "congedo personale e caldo, 2-3 frasi, come la chiusura di una lettera vera. Firma come team URBNX."
-}
-
-IMPORTANTE: il JSON deve essere valido. Non usare virgolette doppie (") dentro i valori — usa solo l'apostrofo per le contrazioni italiane. Non inserire a capo nei valori.`,
+Per l'intro: racconta qualcosa di autentico sul modo di lavorare oggi, un'osservazione vera, 130-150 parole.
+Per ogni location: descrivi atmosfera, luce, sensazioni, cosa si mangia, come ci si sente — concreto e sensoriale, 100-120 parole.
+Per il consiglio: spiega il problema che risolve, come applicarlo, cosa cambia davvero, 110-130 parole.`,
       },
     ],
   });
 
-  return parseClaudeJson(msg.content[0].text);
-}
-
-function parseClaudeJson(raw) {
-  let text = raw.trim();
-  if (text.startsWith("```")) {
-    text = text.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "").trim();
-  }
-  try {
-    return JSON.parse(text);
-  } catch {
-    // Fix literal newlines and tabs inside JSON strings
-    const fixed = text
-      .replace(/\r\n/g, " ")
-      .replace(/\n/g, " ")
-      .replace(/\t/g, " ")
-      .replace(/[ ]{2,}/g, " ");
-    return JSON.parse(fixed);
-  }
+  const toolUse = msg.content.find((c) => c.type === "tool_use");
+  if (!toolUse) throw new Error("Claude non ha restituito tool_use");
+  return toolUse.input;
 }
 
 // ─── 3. HTML EMAIL ─────────────────────────────────────────────────────────
